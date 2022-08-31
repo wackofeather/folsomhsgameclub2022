@@ -46,7 +46,7 @@ public class smoothestsailing : MonoBehaviour
             {
 
                 sailstate = gameObject.transform.localRotation;
-                amogus = gameObject.transform.localEulerAngles.y;
+                amogus = Mathf.DeltaAngle(gameObject.transform.localRotation.y, 0);
                 
                 if (amogus > 89.5)
                 {
@@ -67,14 +67,15 @@ public class smoothestsailing : MonoBehaviour
             float huhh = 0.2f;
             if (isrotating == -1)
             {
+                //PROBLEM SPOT
                 if (amogus > 55)
                 {
                  //   Debug.Log("itworks!");
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 1f);
+                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 1f);
                 }
                 else
                 {
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 1f);
+                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 1f); // use huh somehow
                     huh += 0.1f;
                 }
                 
@@ -89,7 +90,7 @@ public class smoothestsailing : MonoBehaviour
                 }
                 else
                 {
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 1f);
+                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 1f); //use huh somehow
                     huhh += 0.1f;
                 }
                 
@@ -113,7 +114,12 @@ public class smoothestsailing : MonoBehaviour
 
 
         }
-        shee = true;
+        if (bruhangle > 20)
+        {
+            shee = true;
+            //bruh = true;
+        }
+        
 
         if (scrollDir > 0)
         {
