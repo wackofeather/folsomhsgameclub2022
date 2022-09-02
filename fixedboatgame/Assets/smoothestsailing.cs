@@ -18,6 +18,7 @@ public class smoothestsailing : MonoBehaviour
     Quaternion sailstate;
     float amogus;
     bool shee;
+    float rotationstate;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,20 @@ public class smoothestsailing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((boat.transform.localEulerAngles.y > 20) && (boat.transform.localEulerAngles.y < 170))
+        {
+            
+            sailletted = Quaternion.Euler(0f, 270f, 0f);
+
+            sailpulled = Quaternion.Euler(0f, 345f, 0f);
+        }
+        if ((boat.transform.localEulerAngles.y < 340) && (boat.transform.localEulerAngles.y > 190))
+        {
+            sailletted = Quaternion.Euler(0f, 90f, 0f);
+
+            sailpulled = Quaternion.Euler(0f, 0f, 0f);
+        }
+        //Debug.Log(boat.transform.localEulerAngles.y);
         float scrollDir = Input.GetAxis("Mouse ScrollWheel");
 
         angle = boat.transform.rotation.eulerAngles.y - windvector.transform.rotation.eulerAngles.y;
@@ -47,11 +62,17 @@ public class smoothestsailing : MonoBehaviour
 
                 sailstate = gameObject.transform.localRotation;
                 amogus = Mathf.DeltaAngle(gameObject.transform.localRotation.y, 0);
-                
-                if (amogus > 89.5)
+                rotationstate = isrotating;
+
+                if ((amogus > 89.5) && (rotationstate == 1))
                 {
                     sailflip = Quaternion.Euler(0, 271, 0);
                 }
+                if ((amogus > 89.5) && (rotationstate == -1))
+                {
+                    sailflip = Quaternion.Euler(0, 89, 0);
+                }
+
                 else
                 {
                     //Debug.Log("WHYYYYYY");
@@ -65,46 +86,83 @@ public class smoothestsailing : MonoBehaviour
             
             float huh = 0.2f;
             float huhh = 0.2f;
-            if (isrotating == -1)
+            if (rotationstate == 1)
             {
-                //PROBLEM SPOT
-                if (amogus > 55)
+                if (isrotating == -1)
                 {
-                 //   Debug.Log("itworks!");
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                    //PROBLEM SPOT
+                    if (amogus > 55)
+                    {
+                        //   Debug.Log("itworks!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
+                        //huh += 0.1f;
+                    }
+
+                    //Debug.Log("shee");
                 }
-                else
+                if (isrotating == 1)
                 {
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow
-                    huh += 0.1f;
+                    if (amogus > 55)
+                    {
+                        //Debug.Log("itworks!!!!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); //use huh somehow
+                        //huhh += 0.1f;
+                    }
+
+                    //Debug.Log("nah");
                 }
-                
-                //Debug.Log("shee");
             }
-            if (isrotating == 1)
+            if (rotationstate == -1)
             {
-                if (amogus > 55)
+                if (isrotating == -1)
                 {
-                    //Debug.Log("itworks!!!!");
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.4f);
+                    //PROBLEM SPOT
+                    if (amogus > 55)
+                    {
+                        //   Debug.Log("itworks!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); // use huh somehow .
+                        //huh += 0.1f;
+                    }
+
+                    //Debug.Log("shee");
                 }
-                else
+                if (isrotating == 1)
                 {
-                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); //use huh somehow
-                    huhh += 0.1f;
+                    if (amogus > 55)
+                    {
+                        //Debug.Log("itworks!!!!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); //use huh somehow
+                        //huhh += 0.1f;
+                    }
+
+                    //Debug.Log("nah");
                 }
-                
-                //Debug.Log("nah");
             }
+            
             
             
             
 
-            if (gameObject.transform.localRotation == sailflip)
+            if ((gameObject.transform.localRotation == sailflip) && (bruhangle > 20) && (bruhangle < 170))
             {
-                sailletted = Quaternion.Euler(0f, 270f, 0f);
-
-                sailpulled = Quaternion.Euler(0f, 345f, 0f);
+            
+                
                 huh = 0.2f;
                 huhh = 0.2f;
                 bruh = true;
@@ -114,12 +172,156 @@ public class smoothestsailing : MonoBehaviour
 
 
         }
+        
+        
+        
+        
+        if ((bruhangle > 170) && (shee == true))
+        {
+            //Debug.Log("cmonwork");
+            if (bruh == true)
+            {
+
+                sailstate = gameObject.transform.localRotation;
+                amogus = Mathf.DeltaAngle(gameObject.transform.localRotation.y, 0);
+                rotationstate = isrotating;
+
+                if ((amogus > 89.5) && (rotationstate == 1))
+                {
+                    sailflip = Quaternion.Euler(0, 271, 0);
+                }
+                if ((amogus > 89.5) && (rotationstate == -1))
+                {
+                    sailflip = Quaternion.Euler(0, 89, 0);
+                }
+
+                else
+                {
+                    //Debug.Log("WHYYYYYY");
+                    sailflip = Quaternion.Euler(0, (2 * (90 - gameObject.transform.localEulerAngles.y)) + 180 + gameObject.transform.localEulerAngles.y, 0);
+                }
+
+
+                bruh = false;
+
+            }
+
+            float huh = 0.2f;
+            float huhh = 0.2f;
+            if (rotationstate == 1)
+            {
+                if (isrotating == -1)
+                {
+                    //PROBLEM SPOT
+                    if (amogus > 55)
+                    {
+                        //   Debug.Log("itworks!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
+                        //huh += 0.1f;
+                    }
+
+                    //Debug.Log("shee");
+                }
+                if (isrotating == 1)
+                {
+                    if (amogus > 55)
+                    {
+                        //Debug.Log("itworks!!!!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); //use huh somehow
+                        //huhh += 0.1f;
+                    }
+
+                    //Debug.Log("nah");
+                }
+            }
+            if (rotationstate == -1)
+            {
+                if (isrotating == -1)
+                {
+                    //PROBLEM SPOT
+                    if (amogus > 55)
+                    {
+                        //   Debug.Log("itworks!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); // use huh somehow .
+                        //huh += 0.1f;
+                    }
+
+                    //Debug.Log("shee");
+                }
+                if (isrotating == 1)
+                {
+                    if (amogus > 55)
+                    {
+                        //Debug.Log("itworks!!!!");
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                    }
+                    else
+                    {
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); //use huh somehow
+                        //huhh += 0.1f;
+                    }
+
+                    //Debug.Log("nah");
+                }
+            }
+
+
+            if ((gameObject.transform.localRotation == sailflip) && (bruhangle > 20) && (bruhangle < 170))
+            {
+
+
+                huh = 0.2f;
+                huhh = 0.2f;
+                bruh = true;
+                shee = false;
+                Debug.Log("meme");
+            }
+
+
+        
+
+
+
+
+            
+        }
+        if ((boat.transform.localEulerAngles.y > 20) && (boat.transform.localEulerAngles.y < 170))
+        {
+            
+            bruh = true;
+            shee = false;
+            //Debug.Log("meme");
+        }
+        if ((boat.transform.localEulerAngles.y < 340) && (boat.transform.localEulerAngles.y > 190))
+        {
+            
+            bruh = true;
+            shee = false;
+        }
+
         if (bruhangle > 20)
         {
             shee = true;
             //bruh = true;
         }
-        
+        if (bruhangle > 170)
+        {
+            shee = true;
+            //bruh = true;
+        }
+
 
         if (scrollDir > 0)
         {
