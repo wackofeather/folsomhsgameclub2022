@@ -185,8 +185,8 @@ public class smoothestsailing : MonoBehaviour
 
                 if ((amogus > 89.5) && (rotationstate == -1))
                 {
-                    Debug.Log("bruhhhhhh");
-                    sailflip = Quaternion.Euler(0, 300, 0);
+                    Debug.Log("bruhhhhh");
+                    sailflip = Quaternion.Euler(0, 271, 0);
                 }
                 if ((amogus > 89.5) && (rotationstate == 1))
                 {
