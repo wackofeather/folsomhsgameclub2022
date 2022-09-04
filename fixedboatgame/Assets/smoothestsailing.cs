@@ -7,6 +7,7 @@ public class smoothestsailing : MonoBehaviour
     // Start is called before the first frame update
     float angle;
     float bruhangle;
+    float easeangle;
     float isrotating;
     bool bruh;
     public GameObject rotationchecker;
@@ -50,7 +51,8 @@ public class smoothestsailing : MonoBehaviour
 
         angle = boat.transform.rotation.eulerAngles.y - windvector.transform.rotation.eulerAngles.y;
         bruhangle = Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation);
-       // Debug.Log(bruhangle);
+        easeangle = Mathf.DeltaAngle(boat.transform.localEulerAngles.y, windvector.transform.localEulerAngles.y);
+        //Debug.Log(easeangle);
         isrotating = rotationchecker.GetComponent<boatrotation>().isrotating;
         
         if ((bruhangle < 20) && (bruhangle > 0) && (shee == true))
@@ -89,11 +91,49 @@ public class smoothestsailing : MonoBehaviour
                 bruh = false;
 
             }
-
-            float huh = (2 * amogus)*0.01f;
+            
+            float huh = (2*amogus)/0.01f;
             float huhh = 0.2f;
-            if (rotationstate == 1)
+            if (rotationstate == 1) // 1 is right, -1 is left
             {
+                if (easeangle > 0)
+                {
+                    if (easeangle > 0)
+                    {
+
+                    }
+                    if (isrotating == -1)
+                    {
+                        //PROBLEM SPOT
+                        if (amogus > 55)
+                        {
+                            //   Debug.Log("itworks!");
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                        }
+                        else
+                        {
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
+                                                                                                                                                //huh += 0.1f;
+                        }
+
+                        //Debug.Log("shee");
+                    }
+                    if (isrotating == 1)
+                    {
+                        if (amogus > 55)
+                        {
+                            //Debug.Log("itworks!!!!");
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.01f);
+                        }
+                        else
+                        {
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.01f); //use huh somehow
+                                                                                                                                               //huhh += 0.1f;
+                        }
+
+                        //Debug.Log("nah");
+                    }
+                }
                 if (isrotating == -1)
                 {
                     //PROBLEM SPOT
@@ -104,7 +144,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, huh); // use huh somehow .
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
                         //huh += 0.1f;
                     }
 
@@ -119,7 +159,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, huh); //use huh somehow
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); //use huh somehow
                         //huhh += 0.1f;
                     }
 
@@ -138,7 +178,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, huh); // use huh somehow .
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); // use huh somehow .
                         //huh += 0.1f;
                     }
 
@@ -153,7 +193,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, huh); //use huh somehow
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); //use huh somehow
                         //huhh += 0.1f;
                     }
 
