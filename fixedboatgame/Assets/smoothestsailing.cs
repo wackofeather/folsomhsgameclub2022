@@ -98,10 +98,7 @@ public class smoothestsailing : MonoBehaviour
             {
                 if (easeangle > 0)
                 {
-                    if (easeangle > 0)
-                    {
-
-                    }
+                    
                     if (isrotating == -1)
                     {
                         //PROBLEM SPOT
@@ -122,12 +119,12 @@ public class smoothestsailing : MonoBehaviour
                     {
                         if (amogus > 55)
                         {
-                            //Debug.Log("itworks!!!!");
+                            Debug.Log("itworks!!!!");
                             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.01f);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.01f); //use huh somehow
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.01f); //use huh somehow .
                                                                                                                                                //huhh += 0.1f;
                         }
 
