@@ -89,8 +89,8 @@ public class smoothestsailing : MonoBehaviour
                 bruh = false;
 
             }
-            
-            float huh = 0.2f;
+
+            float huh = (2 * amogus)*0.01f;
             float huhh = 0.2f;
             if (rotationstate == 1)
             {
@@ -104,7 +104,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, huh); // use huh somehow .
                         //huh += 0.1f;
                     }
 
@@ -119,7 +119,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); //use huh somehow
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, huh); //use huh somehow
                         //huhh += 0.1f;
                     }
 
@@ -138,7 +138,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f); // use huh somehow .
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, huh); // use huh somehow .
                         //huh += 0.1f;
                     }
 
@@ -153,7 +153,7 @@ public class smoothestsailing : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); //use huh somehow
+                        gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, huh); //use huh somehow
                         //huhh += 0.1f;
                     }
 
