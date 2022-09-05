@@ -6,6 +6,7 @@ public class speed : MonoBehaviour
 {
     float angle;
     float sailwindangle;
+    float sailanglefromzero;
     Quaternion sailpulled;
     Quaternion sailletted;
     float boatspeed = 0;
@@ -15,7 +16,7 @@ public class speed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sailwindangle = Anglecheckers.GetComponent<anglechecker>().sailwindangle;
+        
         rb = GetComponent<Rigidbody>(); 
     }
 
@@ -23,22 +24,19 @@ public class speed : MonoBehaviour
     void Update()
     {
         angle = gameObject.transform.rotation.eulerAngles.y - windvector.transform.rotation.eulerAngles.y;
-         rb.AddForce(0,0,boatspeed);
+         rb.AddForce(transform.forward * -0.1f);
+        sailwindangle = Anglecheckers.GetComponent<anglechecker>().sailwindangle;
+        sailanglefromzero = Anglecheckers.GetComponent<smoothestsailing>().sailanglefromzero;
+        //Debug.Log(angle);
+        float boatwindangles = Quaternion.Angle(gameObject.transform.rotation, windvector.transform.rotation);
+        Debug.Log(sailwindangle);
 
-
-        if ((angle < 45) && (angle > 10))
+        if ((angle>20) && (angle < 40)) //this dosen't work rn but i have more important stuff to fix first
         {
-            //Debug.Log("cool");
-            
-            
-            if (sailwindangle < 90)
+            if (sailwindangle < 10)
             {
-              boatspeed = 5 - (5 - sailwindangle);
-               
+                boatspeed = 0.1f * (10 - sailwindangle);
             }
-            
-            
-
         }
         
     }

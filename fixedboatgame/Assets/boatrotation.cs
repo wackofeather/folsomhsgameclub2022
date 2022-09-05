@@ -21,12 +21,12 @@ public class boatrotation : MonoBehaviour
         isrotating = 0;
         if (Input.GetMouseButton(0))
         {
-            boatangle += 0.1f;
+            boatangle += 40f *Time.deltaTime;
             isrotating = 1;
         }
         if (Input.GetMouseButton(1))
         {
-            boatangle -= 0.1f;
+            boatangle -= 40f * Time.deltaTime;
             isrotating = -1;
         }
 
