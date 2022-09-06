@@ -13,6 +13,7 @@ public class speed : MonoBehaviour
     float boatvelocity;
     public GameObject windvector;
     public GameObject Anglecheckers;
+    public GameObject boat;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class speed : MonoBehaviour
         Debug.Log(boatvelocity);
         if (boatvelocity < 1)
         {
+            Debug.Log("shesh");
             rb.AddForce((transform.forward * -700f) * Time.deltaTime);
         }
          
