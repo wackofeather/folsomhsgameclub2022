@@ -36,7 +36,7 @@ public class supersailing : MonoBehaviour
         sailanglefromzero = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
         mixedboatangle = boat.transform.localEulerAngles.y-windvector.transform.localEulerAngles.y;
         //float amogustest = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
-        Debug.Log(mixedboatangle);
+        //Debug.Log(mixedboatangle);
         if ((mixedboatangle > 20) && (mixedboatangle < 170))
         {
 

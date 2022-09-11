@@ -16,7 +16,7 @@ public class sailbehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // its a bit clunky but works for now
+        // its a bit clunky but works for now, this has potential
         mixedboatangle = sail.GetComponent<supersailing>().mixedboatangle;
         Debug.Log(sail.transform.localEulerAngles.y);
         if (sail.transform.localEulerAngles.y > 180)
