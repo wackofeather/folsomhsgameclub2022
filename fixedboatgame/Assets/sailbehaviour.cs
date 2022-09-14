@@ -18,7 +18,7 @@ public class sailbehaviour : MonoBehaviour
     {
         // its a bit clunky but works for now, this has potential
         mixedboatangle = sail.GetComponent<supersailing>().mixedboatangle;
-        Debug.Log(sail.transform.localEulerAngles.y);
+       // Debug.Log(sail.transform.localEulerAngles.y);
         if (sail.transform.localEulerAngles.y > 180)
         {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);

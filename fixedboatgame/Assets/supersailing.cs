@@ -22,6 +22,7 @@ public class supersailing : MonoBehaviour
     float amogus;
     bool shee;
     float rotationstate;
+    bool changemind;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,16 +107,33 @@ public class supersailing : MonoBehaviour
                     if (isrotating == -1)
                     {
                         //PROBLEM SPOT
-                        if (amogus > 55)
+                        if (changemind == false)
                         {
-                            //   Debug.Log("itworks!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
+                            if (amogus > 55)
+                            {
+                                //   Debug.Log("itworks!");
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
+                            }
+                            else
+                            {
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); // use huh somehow .
+                                                                                                                                                    //huh += 0.1f;
+                            }
                         }
-                        else
+                        if (changemind == true)
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); // use huh somehow .
-                                                                                                                                                //huh += 0.1f;
+                            if (amogus > 55)
+                            {
+                                //   Debug.Log("itworks!");
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 300f * Time.deltaTime);
+                            }
+                            else
+                            {
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 300f * Time.deltaTime); // use huh somehow .
+                                                                                                                                                                    //huh += 0.1f;
+                            }
                         }
+                        
 
                         //Debug.Log("shee");
                     }
@@ -150,6 +168,7 @@ public class supersailing : MonoBehaviour
                             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); // use huh somehow .
                                                                                                                                                 //huh += 0.1f;
                         }
+                        changemind = true;
 
                         //Debug.Log("shee");
                     }
@@ -165,7 +184,7 @@ public class supersailing : MonoBehaviour
                             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 550f * Time.deltaTime); //use huh somehow
                                                                                                                                                //huhh += 0.1f;
                         }
-
+                        changemind = false;
                         //Debug.Log("nah");
                     }
                 }
@@ -192,16 +211,32 @@ public class supersailing : MonoBehaviour
                         //Debug.Log("shee");
                     }
                     if (isrotating == 1)
-                    {
-                        if (amogus > 55)
+                    { // PROBLEMMMMMM
+                        if (changemind == false)
                         {
-                            //Debug.Log("itworks!!!!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
+                            if (amogus > 55)
+                            {
+                                //   Debug.Log("itworks!");
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
+                            }
+                            else
+                            {
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); // use huh somehow .
+                                                                                                                                                                    //huh += 0.1f;
+                            }
                         }
-                        else
+                        if (changemind == true)
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); //use huh somehow
-                                                                                                                                                //huhh += 0.1f;
+                            if (amogus > 55)
+                            {
+                                //   Debug.Log("itworks!");
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 300f * Time.deltaTime);
+                            }
+                            else
+                            {
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 300f * Time.deltaTime); // use huh somehow .
+                                                                                                                                                                     //huh += 0.1f;
+                            }
                         }
 
                         //Debug.Log("nah");
@@ -222,7 +257,7 @@ public class supersailing : MonoBehaviour
                             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 550f * Time.deltaTime); // use huh somehow .
                                                                                                                                                //huh += 0.1f;
                         }
-
+                        changemind = false;
                         //Debug.Log("shee");
                     }
                     if (isrotating == 1)
@@ -234,10 +269,10 @@ public class supersailing : MonoBehaviour
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); //use huh somehow
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); //use huh somehow..
                                                                                                                                                 //huhh += 0.1f;
                         }
-
+                        changemind = true;
                         //Debug.Log("nah");
                     }
                 }
@@ -385,6 +420,7 @@ public class supersailing : MonoBehaviour
         {
             shee = true;
             bruh = true;
+            changemind = false;
             //Debug.Log("meme");
         }
 
@@ -401,5 +437,6 @@ public class supersailing : MonoBehaviour
             //in
             transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
         }
+        Debug.Log(rotationstate);
     }
 }
