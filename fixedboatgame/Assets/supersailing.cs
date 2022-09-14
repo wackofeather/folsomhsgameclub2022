@@ -109,11 +109,11 @@ public class supersailing : MonoBehaviour
                         if (amogus > 55)
                         {
                             //   Debug.Log("itworks!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); // use huh somehow .
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); // use huh somehow .
                                                                                                                                                 //huh += 0.1f;
                         }
 
@@ -128,7 +128,7 @@ public class supersailing : MonoBehaviour
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 20f * Time.deltaTime); //use huh somehow .....
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 25f * Time.deltaTime); //use huh somehow .......
                                                                                                                                                                  //huhh += 0.1f;
                         }
 
@@ -181,11 +181,11 @@ public class supersailing : MonoBehaviour
                         if (amogus > 55)
                         {
                             //   Debug.Log("itworks!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.05f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 50f * Time.deltaTime);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 0.05f); // use huh somehow .
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.Euler(0, 0, 0), 25f * Time.deltaTime); // use huh somehow .
                                                                                                                                                                  //huh += 0.1f;
                         }
 
@@ -196,11 +196,11 @@ public class supersailing : MonoBehaviour
                         if (amogus > 55)
                         {
                             //Debug.Log("itworks!!!!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.4f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 50f * Time.deltaTime);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 0.7f); //use huh somehow
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailstate, 25f * Time.deltaTime); //use huh somehow
                                                                                                                                                 //huhh += 0.1f;
                         }
 
