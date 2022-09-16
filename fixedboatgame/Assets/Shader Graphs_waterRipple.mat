@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_waterRipple
-  m_Shader: {fileID: -6465566751694194690, guid: d7df3401fb3c9aa4ebd214770f344405, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 27d9ec73cb8e04f4c98c017993c60670, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -49,5 +49,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _waveSpeed: 0.1
+    - _waveheight: 0.5
     m_Colors: []
   m_BuildTextureStacks: []
