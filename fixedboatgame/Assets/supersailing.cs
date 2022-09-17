@@ -441,7 +441,7 @@ public class supersailing : MonoBehaviour
         
         
 
-        if ((bruhangle > 20) && (bruhangle < 40))
+        if ((bruhangle > 20) && (bruhangle < 60))
         {
             ghostsailfollow = false;
             //Debug.Log("fart");
@@ -468,6 +468,7 @@ public class supersailing : MonoBehaviour
         {
             if (ghostinstantiate == true)
             {
+                //k
                 //Debug.Log("fart");
                 ghostsailstate = ghostsail.transform.localRotation;
                 ghostinstantiate = false;
@@ -489,11 +490,11 @@ public class supersailing : MonoBehaviour
         }
         if ((ghostsailfollow == true) && (ghostinstantiate == false))
         {
-            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.rotation, 1f);
-            if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
+            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.localRotation, 1f);
+            /*if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
             {
                  ghostinstantiate = true;
-            }
+            }*/
            
         }
 
