@@ -33,6 +33,7 @@ public class supersailing : MonoBehaviour
     {
         bruh = true;
         shee = true;
+        ghostinstantiate = true;
     }
 
 
@@ -428,25 +429,15 @@ public class supersailing : MonoBehaviour
             //Debug.Log("meme");
         }
 
-        if (scrollDir > 0)
-        {
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime);
-            //out
+        
 
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if ((bruhangle > 40) && (bruhangle < 180))
         {
-            //in
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+          ghostsailfollow = true;   
         }
-
-
-        /*ghostsailfollow = true;
-        if ((ghostsailfollow = true) && (ghostinstantiate == false))
-        {
-            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.rotation, 1f);
-            ghostinstantiate = true;
-        }
+        Debug.Log("GF" + ghostsailfollow);
+        Debug.Log("GI" + ghostinstantiate);
+        
         
         
 
@@ -455,27 +446,11 @@ public class supersailing : MonoBehaviour
             ghostsailfollow = false;
             //Debug.Log("fart");
         }
-        if (ghostsailfollow == false)
+        //Debug.Log(bruhangle);
+
+        if ((ghostsailfollow == true) && (ghostinstantiate == true))
         {
-            if (ghostinstantiate == true)
-            {
-                ghostsailstate = ghostsail.transform.localRotation;
-                ghostinstantiate = false;
-            }
-            if (scrollDir > 0)
-            {
-                ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
-            }
             
-            if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (ghostsail.transform.localRotation != gameObject.transform.localRotation))
-            {
-                //in
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
-            }
-        }
-        if (ghostsailfollow == true)
-        {
-            Debug.Log("bruh");
             if (scrollDir > 0)
             {
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime);
@@ -488,7 +463,42 @@ public class supersailing : MonoBehaviour
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
             } 
             ghostsail.transform.localRotation = gameObject.transform.localRotation;
-        }*/
+        }
+        if (ghostsailfollow == false)
+        {
+            if (ghostinstantiate == true)
+            {
+                //Debug.Log("fart");
+                ghostsailstate = ghostsail.transform.localRotation;
+                ghostinstantiate = false;
+            }
+            if (ghostinstantiate == false)
+            {
+                if (scrollDir > 0)
+                {
+                    ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                }
+            
+                if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (ghostsail.transform.localEulerAngles.y > gameObject.transform.localEulerAngles.y))
+                {
+                    //in
+                    ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                }
+            }
+           
+        }
+        if ((ghostsailfollow == true) && (ghostinstantiate == false))
+        {
+            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.rotation, 1f);
+            if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
+            {
+                 ghostinstantiate = true;
+            }
+           
+        }
+
+
+
 
 
 
