@@ -19,10 +19,15 @@ public class supersailing : MonoBehaviour
     public Quaternion sailletted = Quaternion.Euler(0f, 90f, 0f);
     Quaternion sailflip;
     Quaternion sailstate;
+    Quaternion ghostsailstate;
     float amogus;
     bool shee;
     float rotationstate;
     bool changemind;
+    public GameObject ghostsail;
+    bool ghostsailfollow;
+    bool ghostinstantiate;
+    float ghostrotate;
     // Start is called before the first frame update
     void Start()
     {
@@ -415,7 +420,6 @@ public class supersailing : MonoBehaviour
 
         }
 
-
         if ((bruhangle > 20) && (bruhangle < 170))
         {
             shee = true;
@@ -423,8 +427,6 @@ public class supersailing : MonoBehaviour
             changemind = false;
             //Debug.Log("meme");
         }
-
-
 
         if (scrollDir > 0)
         {
@@ -437,6 +439,67 @@ public class supersailing : MonoBehaviour
             //in
             transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
         }
-        Debug.Log(rotationstate);
+
+
+        /*ghostsailfollow = true;
+        if ((ghostsailfollow = true) && (ghostinstantiate == false))
+        {
+            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.rotation, 1f);
+            ghostinstantiate = true;
+        }
+        
+        
+
+        if ((bruhangle > 20) && (bruhangle < 40))
+        {
+            ghostsailfollow = false;
+            //Debug.Log("fart");
+        }
+        if (ghostsailfollow == false)
+        {
+            if (ghostinstantiate == true)
+            {
+                ghostsailstate = ghostsail.transform.localRotation;
+                ghostinstantiate = false;
+            }
+            if (scrollDir > 0)
+            {
+                ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
+            }
+            
+            if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (ghostsail.transform.localRotation != gameObject.transform.localRotation))
+            {
+                //in
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+            }
+        }
+        if (ghostsailfollow == true)
+        {
+            Debug.Log("bruh");
+            if (scrollDir > 0)
+            {
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                //out
+
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                //in
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+            } 
+            ghostsail.transform.localRotation = gameObject.transform.localRotation;
+        }*/
+
+
+
+
+
+        //Debug.Log("thsipartworks");
+
+
+
+
+
+        //Debug.Log(rotationstate);
     }
 }
