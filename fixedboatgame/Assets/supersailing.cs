@@ -480,10 +480,19 @@ public class supersailing : MonoBehaviour
                     ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
                 }
             
-                if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (ghostsail.transform.localEulerAngles.y > gameObject.transform.localEulerAngles.y))
+                if ((Input.GetAxis("Mouse ScrollWheel") < 0))
                 {
+                    if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
+                    {
+                         ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                        gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                    }
                     //in
-                    ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                    
                 }
             }
            
@@ -491,10 +500,10 @@ public class supersailing : MonoBehaviour
         if ((ghostsailfollow == true) && (ghostinstantiate == false))
         {
             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.localRotation, 1f);
-            /*if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
+            if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
             {
                  ghostinstantiate = true;
-            }*/
+            }
            
         }
 
