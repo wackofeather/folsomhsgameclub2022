@@ -31,6 +31,7 @@ public class supersailing : MonoBehaviour
     bool ghostsailfollow;
     bool ghostinstantiate;
     float ghostrotate;
+    Quaternion sailimp;
     // Start is called before the first frame update
     void Start()
     {
@@ -438,8 +439,8 @@ public class supersailing : MonoBehaviour
         {
           ghostsailfollow = true;   
         }
-        Debug.Log("GF" + ghostsailfollow);
-        Debug.Log("GI" + ghostinstantiate);
+        //Debug.Log("GF" + ghostsailfollow);
+       // Debug.Log("GI" + ghostinstantiate);
         
         
         
@@ -478,6 +479,7 @@ public class supersailing : MonoBehaviour
             }
             if (ghostinstantiate == false)
             {
+                
                 if (scrollDir > 0)
                 {
                     ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
@@ -499,6 +501,13 @@ public class supersailing : MonoBehaviour
                 }
             }
            
+        }
+        if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y))
+        {
+            float sailimpy = Quaternion.Angle(ghostsail.transform.localRotation, gameObject.transform.localRotation);
+            Debug.Log(sailimp);
+            sailimp = Quaternion.Euler(0,gameObject.transform.localRotation.y - sailimpy,0);
+            //gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailimp, 0.1f);
         }
         if ((ghostsailfollow == true) && (ghostinstantiate == false))
         {
