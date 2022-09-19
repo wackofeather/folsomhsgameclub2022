@@ -81,8 +81,8 @@ public class supersailing : MonoBehaviour
 
                 sailstate = gameObject.transform.localRotation;
                 amogus = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
-                ghostamogus = Mathf.Abs(Mathf.DeltaAngle(ghostsail.transform.localEulerAngles.y, 0));
-                ghostsailstate = ghostsail.transform.localRotation;
+                //ghostamogus = Mathf.Abs(Mathf.DeltaAngle(ghostsail.transform.localEulerAngles.y, 0));
+                //ghostsailstate = ghostsail.transform.localRotation;
                 rotationstate = isrotating;
 
                 if ((amogus > 89.5) && (rotationstate == 1))
@@ -100,25 +100,6 @@ public class supersailing : MonoBehaviour
                 {
                     // Debug.Log("WHYYYYYY");
                     sailflip = Quaternion.Euler(0, (2 * (90 - gameObject.transform.localEulerAngles.y)) + 180 + gameObject.transform.localEulerAngles.y, 0);
-                }
-
-
-
-                if ((ghostamogus > 89.5) && (rotationstate == 1))
-                {
-                    //Debug.Log("bruhhhhhh");
-                    ghostsailflip = Quaternion.Euler(0, 271, 0);
-                }
-                if ((ghostamogus > 89.5) && (rotationstate == -1))
-                {
-                    //Debug.Log("bruhhhhhh");
-                    ghostsailflip = Quaternion.Euler(0, 89, 0);
-                }
-
-                if (ghostamogus < 89.5)
-                {
-                    // Debug.Log("WHYYYYYY");
-                    ghostsailflip = Quaternion.Euler(0, (2 * (90 - ghostsail.transform.localEulerAngles.y)) + 180 + ghostsail.transform.localEulerAngles.y, 0);
                 }
 
                 bruh = false;

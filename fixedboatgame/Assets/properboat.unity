@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 229883681}
   - component: {fileID: 229883683}
   - component: {fileID: 229883682}
+  - component: {fileID: 229883684}
   m_Layer: 0
   m_Name: ghostsail
   m_TagString: Untagged
@@ -271,6 +272,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229883680}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &229883684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229883680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a0392929478914ab7e580dd5392430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sailanglefromzero: 0
+  mixedboatangle: 0
+  rotationchecker: {fileID: 479764439}
+  windvector: {fileID: 1000532938}
+  boat: {fileID: 479764439}
+  sailpulled: {x: 0, y: 0.1305262, z: 0, w: 0.9914449}
+  sailletted: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  ghostsail: {fileID: 229883680}
 --- !u!1 &244211102
 GameObject:
   m_ObjectHideFlags: 0
