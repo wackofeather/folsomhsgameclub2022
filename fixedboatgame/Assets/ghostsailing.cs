@@ -69,7 +69,7 @@ public class ghostsailing : MonoBehaviour
 
 
 
-            if (bruh == true)
+            if (bruh == true) // when you try and extend while tacking it registers unitl you switch rotation and it forgets
             {
 
                 sailstate = gameObject.transform.localRotation;

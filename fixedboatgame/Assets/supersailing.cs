@@ -32,6 +32,12 @@ public class supersailing : MonoBehaviour
     bool ghostinstantiate;
     float ghostrotate;
     Quaternion sailimp;
+    bool whytho;
+    Quaternion bruhtho;
+    float sailimpy;
+    Quaternion whathe;
+    bool howtho;
+    float whatheEuler;
     // Start is called before the first frame update
     void Start()
     {
@@ -454,7 +460,8 @@ public class supersailing : MonoBehaviour
 
         if ((ghostsailfollow == true) && (ghostinstantiate == true))
         {
-            
+            howtho = true;
+            whytho = true;
             if (scrollDir > 0)
             {
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime);
@@ -502,13 +509,42 @@ public class supersailing : MonoBehaviour
             }
            
         }
-        if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y))
+        //LOOK AT COMMENT IN GHOSTSAILING FIRST
+       /* if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y)&&(bruhangle > 20))
         {
-            float sailimpy = Quaternion.Angle(ghostsail.transform.localRotation, gameObject.transform.localRotation);
-            Debug.Log(sailimp);
-            sailimp = Quaternion.Euler(0,gameObject.transform.localRotation.y - sailimpy,0);
-            //gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailimp, 0.1f);
-        }
+            if (howtho == true)
+            {
+                whathe = gameObject.transform.localRotation;
+                whatheEuler = gameObject.transform.localEulerAngles.y;
+                howtho = false;
+            }
+            
+            if (whytho ==  true)
+            {
+                
+              sailimpy = Quaternion.Angle(ghostsail.transform.localRotation, whathe);
+                bruhtho = ghostsail.transform.localRotation;
+                sailimp = Quaternion.Euler(0, whatheEuler - (sailimpy * 0.2f), 0);
+                whytho = false;
+            }
+            if (ghostsail.transform.localRotation != bruhtho)
+            {
+                whytho = true;
+            }
+            if (gameObject.transform.localRotation == ghostsail.transform.localRotation)
+            {
+                howtho = true;
+            }
+            
+            Debug.Log(gameObject.transform.localEulerAngles.y);
+            Debug.Log(sailimpy);
+            Debug.Log(gameObject.transform.localRotation.y - sailimpy);
+            if (sailimp != gameObject.transform.localRotation)
+            {
+                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailimp, 0.1f);
+            }
+            
+        }*/
         if ((ghostsailfollow == true) && (ghostinstantiate == false))
         {
             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.localRotation, 1f);
@@ -523,7 +559,7 @@ public class supersailing : MonoBehaviour
 
 
 
-
+        
 
 
         //Debug.Log("thsipartworks");
