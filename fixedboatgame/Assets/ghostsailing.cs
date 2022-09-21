@@ -19,6 +19,7 @@ public class ghostsailing : MonoBehaviour
     Quaternion sailstate;
     float amogus;
     bool shee;
+    bool teeheefunny;
     float rotationstate;
     float mixedboatangle;
     // Start is called before the first frame update
@@ -64,7 +65,10 @@ public class ghostsailing : MonoBehaviour
 
         if ((bruhangle < 1) && (bruhangle > 0) && (shee == true))
         {
-
+            if ((gameObject.transform.localRotation != sailstate) && (gameObject.transform.localRotation != sailflip))
+            {
+                bruh = true;
+            }
             //se
 
 
@@ -77,22 +81,10 @@ public class ghostsailing : MonoBehaviour
 
                 rotationstate = isrotating;
 
-                if ((amogus > 89.5) && (rotationstate == 1))
-                {
-                    //Debug.Log("bruhhhhhh");
-                    sailflip = Quaternion.Euler(0, 271, 0);
-                }
-                if ((amogus > 89.5) && (rotationstate == -1))
-                {
-                    //Debug.Log("bruhhhhhh");
-                    sailflip = Quaternion.Euler(0, 89, 0);
-                }
-
-                if (amogus < 89.5)
-                {
+                
                     // Debug.Log("WHYYYYYY");
                     sailflip = Quaternion.Euler(0, (2 * (90 - gameObject.transform.localEulerAngles.y)) + 180 + gameObject.transform.localEulerAngles.y, 0);
-                }
+                
 
 
                 bruh = false;

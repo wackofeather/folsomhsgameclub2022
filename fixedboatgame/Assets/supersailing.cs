@@ -460,6 +460,7 @@ public class supersailing : MonoBehaviour
 
         if ((ghostsailfollow == true) && (ghostinstantiate == true))
         {
+            
             howtho = true;
             whytho = true;
             if (scrollDir > 0)
@@ -477,74 +478,161 @@ public class supersailing : MonoBehaviour
         }
         if (ghostsailfollow == false)
         {
-            if (ghostinstantiate == true)
+            if ((bruhangle > 20) && (bruhangle < 60))
             {
-                //k
-                //Debug.Log("fart");
-                //we may need a sort of ghostsailstate = ghostsail.transform.localRotation;
-                ghostinstantiate = false;
-            }
-            if (ghostinstantiate == false)
-            {
+                Debug.Log(Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)));
+                if (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) > 20)
+                {
+                    if (ghostinstantiate == true)
+                    {
+                        //k
+                        //Debug.Log("fart");
+                        //we may need a sort of ghostsailstate = ghostsail.transform.localRotation;
+                        ghostinstantiate = false;
+                    }
+                    if (ghostinstantiate == false)
+                    {
                 
-                if (scrollDir > 0)
-                {
-                    ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
-                }
+                        if (scrollDir > 0)
+                        {
+                            ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                        }
             
-                if ((Input.GetAxis("Mouse ScrollWheel") < 0))
-                {
-                    if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
-                    {
-                         ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
-                    }
-                    else
-                    {
-                        ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
-                        gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
-                    }
-                    //in
+                        if ((Input.GetAxis("Mouse ScrollWheel") < 0))
+                        {
+                            if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
+                            {
+                                 ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                            }
+                            else
+                            {
+                                ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                                gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                            }
+                            //in
                     
+                        }
+                    }
+                }
+                else if (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) < 20)
+                {
+                    if (scrollDir > 0)
+                    {
+                        if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
+                        {
+                            ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                        }
+                        else
+                        {
+                            ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailletted, 30f * Time.deltaTime);
+                            gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailletted, 30f * Time.deltaTime);
+                        }
+                        
+                    }
+
+                    if ((Input.GetAxis("Mouse ScrollWheel") < 0))
+                    {
+                        if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
+                        {
+                            ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                        }
+                        else
+                        {
+                            ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                            gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                        }
+                        //in
+
+                    }
                 }
             }
+            else
+            {
+                if (ghostinstantiate == true)
+                {
+                    //k
+                    //Debug.Log("fart");
+                    //we may need a sort of ghostsailstate = ghostsail.transform.localRotation;
+                    ghostinstantiate = false;
+                }
+                if (ghostinstantiate == false)
+                {
+
+                    if (scrollDir > 0)
+                    {
+                        ghostsail.transform.localRotation = Quaternion.RotateTowards(ghostsail.transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                    }
+
+                    if ((Input.GetAxis("Mouse ScrollWheel") < 0))
+                    {
+                        if (ghostsail.transform.localRotation.y > gameObject.transform.localRotation.y)
+                        {
+                            ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                        }
+                        else
+                        {
+                            ghostsail.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                            gameObject.transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                        }
+                        //in
+
+                    }
+                }
+            }
+            
            
         }
         //LOOK AT COMMENT IN GHOSTSAILING FIRST
-       /* if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y)&&(bruhangle > 20))
-        {
-            if (howtho == true)
-            {
-                whathe = gameObject.transform.localRotation;
-                whatheEuler = gameObject.transform.localEulerAngles.y;
-                howtho = false;
-            }
-            
-            if (whytho ==  true)
-            {
-                
-              sailimpy = Quaternion.Angle(ghostsail.transform.localRotation, whathe);
-                bruhtho = ghostsail.transform.localRotation;
-                sailimp = Quaternion.Euler(0, whatheEuler - (sailimpy * 0.2f), 0);
-                whytho = false;
-            }
-            if (ghostsail.transform.localRotation != bruhtho)
-            {
-                whytho = true;
-            }
-            if (gameObject.transform.localRotation == ghostsail.transform.localRotation)
-            {
-                howtho = true;
-            }
-            
-            Debug.Log(gameObject.transform.localEulerAngles.y);
-            Debug.Log(sailimpy);
-            Debug.Log(gameObject.transform.localRotation.y - sailimpy);
-            if (sailimp != gameObject.transform.localRotation)
-            {
-                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailimp, 0.1f);
-            }
-            
-        }*/
+        /* if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y)&&(bruhangle > 20))
+         {
+             if (howtho == true)
+             {
+                 whathe = gameObject.transform.localRotation;
+                 whatheEuler = gameObject.transform.localEulerAngles.y;
+                 howtho = false;
+             }
+
+             if (whytho ==  true)
+             {
+
+               sailimpy = Quaternion.Angle(ghostsail.transform.localRotation, whathe);
+                 bruhtho = ghostsail.transform.localRotation;
+                 sailimp = Quaternion.Euler(0, whatheEuler - (sailimpy * 0.2f), 0);
+                 whytho = false;
+             }
+             if (ghostsail.transform.localRotation != bruhtho)
+             {
+                 whytho = true;
+             }
+             if (gameObject.transform.localRotation == ghostsail.transform.localRotation)
+             {
+                 howtho = true;
+             }
+
+             Debug.Log(gameObject.transform.localEulerAngles.y);
+             Debug.Log(sailimpy);
+             Debug.Log(gameObject.transform.localRotation.y - sailimpy);
+             if ((sailimp != gameObject.transform.localRotation) && (gameObject.transform.localRotation != ghostsail.transform.localRotation))
+             {
+                 gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailimp, 0.1f);
+             }
+
+         }*/
+         if ((ghostsailfollow == false) && (ghostsail.transform.localRotation.y != gameObject.transform.localRotation.y) && (bruhangle > 20) && (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) > 20))
+         {
+             if (gameObject.transform.localRotation != ghostsail.transform.localRotation)
+             {
+                if (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) > 40)
+                {
+                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.identity, 0.07f);
+                }
+                if (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) < 40)
+                {
+                    gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, Quaternion.identity, 0.01f);
+                }
+                 
+             }
+         }
         if ((ghostsailfollow == true) && (ghostinstantiate == false))
         {
             gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, ghostsail.transform.localRotation, 1f);
