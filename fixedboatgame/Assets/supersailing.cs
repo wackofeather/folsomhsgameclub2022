@@ -65,7 +65,7 @@ public class supersailing : MonoBehaviour
         {
             sailletted = Quaternion.Euler(0f, 90f, 0f);
 
-            sailpulled = Quaternion.Euler(0f, 0f, 0f);
+            sailpulled = Quaternion.Euler(0f, 15f, 0f);
         }
         //Debug.Log(boat.transform.localEulerAngles.y);
         float scrollDir = Input.GetAxis("Mouse ScrollWheel");
@@ -480,7 +480,7 @@ public class supersailing : MonoBehaviour
         {
             if ((bruhangle > 20) && (bruhangle < 60))
             {
-                Debug.Log(Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)));
+                //Debug.Log(Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)));
                 if (Mathf.Abs(Quaternion.Angle(gameObject.transform.localRotation, Quaternion.identity)) > 20)
                 {
                     if (ghostinstantiate == true)

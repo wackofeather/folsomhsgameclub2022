@@ -35,10 +35,10 @@ public class speed : MonoBehaviour
         }
          
         sailwindangle = Anglecheckers.GetComponent<anglechecker>().sailwindangle;
-        sailanglefromzero = Anglecheckers.GetComponent<smoothestsailing>().sailanglefromzero;
+        sailanglefromzero = Anglecheckers.GetComponent<supersailing>().sailanglefromzero;
         //Debug.Log(angle);
         float boatwindangles = Quaternion.Angle(gameObject.transform.rotation, windvector.transform.rotation);
-        //Debug.Log(sailwindangle);
+        Debug.Log(sailwindangle);
 
         if ((angle>20) && (angle < 40)) //this dosen't work rn but i have more important stuff to fix first
         {

@@ -17,7 +17,7 @@ public class anglechecker : MonoBehaviour
     void Update()
     {
         sailwindangle = Quaternion.Angle(gameObject.transform.rotation, windvector.transform.rotation);
-        //Debug.Log(sailwindangle);
+        Debug.Log(sailwindangle);
         
     }
 }

@@ -285,13 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailanglefromzero: 0
-  mixedboatangle: 0
   rotationchecker: {fileID: 479764439}
   windvector: {fileID: 1000532938}
   boat: {fileID: 479764439}
   sailpulled: {x: 0, y: 0.1305262, z: 0, w: 0.9914449}
   sailletted: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
-  ghostsail: {fileID: 229883680}
 --- !u!1 &244211102
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +357,7 @@ GameObject:
   - component: {fileID: 479764443}
   - component: {fileID: 479764442}
   - component: {fileID: 479764441}
+  - component: {fileID: 479764444}
   m_Layer: 0
   m_Name: propersailboatparent
   m_TagString: Untagged
@@ -429,6 +428,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &479764444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479764439}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcebdf913bd2e674f8ce2678a3cf3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windvector: {fileID: 1000532938}
+  Anglecheckers: {fileID: 1972397404}
+  boat: {fileID: 479764439}
 --- !u!1 &616845545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972397405}
   - component: {fileID: 1972397406}
+  - component: {fileID: 1972397407}
   m_Layer: 0
   m_Name: propersailparent
   m_TagString: Untagged
@@ -1070,6 +1085,20 @@ MonoBehaviour:
   sailpulled: {x: 0, y: 0.1305262, z: 0, w: 0.9914449}
   sailletted: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   ghostsail: {fileID: 229883680}
+--- !u!114 &1972397407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972397404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b8eb260bc29404fa540afd2817719d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windvector: {fileID: 1000532938}
+  sailwindangle: 0
 --- !u!33 &274040662197032961
 MeshFilter:
   m_ObjectHideFlags: 0
