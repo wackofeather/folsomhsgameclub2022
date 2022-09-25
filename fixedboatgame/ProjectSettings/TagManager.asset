@@ -8,6 +8,7 @@ TagManager:
   - wind
   - boat
   - Grid
+  - gridparent
   layers:
   - Default
   - TransparentFX

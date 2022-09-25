@@ -11,6 +11,10 @@ public class GridGenerator : MonoBehaviour
     public float zSpace;
     public bool gridinstantiate;
     public GameObject gridprefab;
+    public Transform Player;
+    public GameObject parent;
+    GameObject fart;
+    GameObject pee;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +26,48 @@ public class GridGenerator : MonoBehaviour
     {
         if (gridinstantiate == true)
         {
-            for (int i=0; i<columnLength * rowLength; i++)
+            
+            GameObject initialinstante = Instantiate(gridprefab, new Vector3(Player.position.x, 0, Player.position.z), Quaternion.identity);
+            for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
             {
-                Instantiate(gridprefab, new Vector3(xSpace + (xSpace * (i % columnLength)), 0, zSpace + (zSpace * (i / columnLength))), Quaternion.identity);
+                GameObject gawdam = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                gawdam.transform.parent = parent.transform;
+            }
+            for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+            {
+                GameObject gawda = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                gawda.transform.parent = parent.transform;
+            }
+            initialinstante.transform.parent = parent.transform;
+            for (int i=0; i<Mathf.Floor(columnLength/2); i++)
+            {
+                fart = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (i % columnLength)), 0, 0), Quaternion.identity);
+                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                {
+                    GameObject shsh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                    shsh.transform.parent = parent.transform;
+                }
+                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                {
+                    GameObject sh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                    sh.transform.parent = parent.transform;
+                }
+                fart.transform.parent = parent.transform;
+            }
+            for (int i = 0; i < Mathf.Floor(columnLength / 2); i++)
+            {
+                pee = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (i % columnLength)), 0, 0), Quaternion.identity);
+                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                {
+                    GameObject huhuh = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                    huhuh.transform.parent = parent.transform;
+                }
+                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                {
+                    GameObject dududn = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                    dududn.transform.parent = parent.transform;
+                }
+                pee.transform.parent = parent.transform;
             }
             gridinstantiate = false;
         }
