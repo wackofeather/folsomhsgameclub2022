@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 337540651270584520}
   - component: {fileID: 8465205540475347551}
   - component: {fileID: 6564618441810848994}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: gridprefab
   m_TagString: Grid
   m_Icon: {fileID: 0}
