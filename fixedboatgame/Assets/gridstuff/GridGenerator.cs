@@ -79,8 +79,15 @@ public class GridGenerator : MonoBehaviour
                 pee.transform.parent = parent.transform;
                 oldtiles.Add(pee);
             }
-            gridinstantiate = false;
+            for (int i = 0; i < oldtiles.Count; i++)
+            {
+                oldtiles[i].name = i.ToString();
+            }
+                gridinstantiate = false;
         }
+
+
+
       
     }
 }

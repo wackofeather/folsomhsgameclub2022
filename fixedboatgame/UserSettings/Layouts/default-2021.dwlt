@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 67
+  controlID: 95
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 83
+  controlID: 96
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 84
+  controlID: 97
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1923,9 +1923,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 10.648775, y: 4.4910054, z: -3.2426128}
+    m_Target: {x: 14.899467, y: 30.63607, z: 4.9315643}
     speed: 2
-    m_Value: {x: 10.648775, y: 4.4910054, z: -3.2426128}
+    m_Value: {x: 14.899467, y: 30.63607, z: 4.9315643}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1972,13 +1972,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.060898863, y: -0.80654347, z: 0.08384691, w: -0.5821196}
+    m_Target: {x: 0.06801259, y: -0.24059753, z: -0.017136108, w: -0.9681488}
     speed: 2
-    m_Value: {x: -0.06089538, y: -0.80649734, z: 0.08384211, w: -0.58208627}
+    m_Value: {x: 0.06800856, y: -0.24058327, z: -0.017135093, w: -0.9680915}
   m_Size:
-    m_Target: 20.906384
+    m_Target: 21.824669
     speed: 2
-    m_Value: 20.906384
+    m_Value: 21.824669
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -3855,8 +3855,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: f6680000
+    m_LastClickedInstanceID: 26870
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c86b000000000000
     m_RenameOverlay:
@@ -3958,9 +3958,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ca680000
-      m_LastClickedID: 26826
-      m_ExpandedIDs: 36fbffffca680000e0680000e6680000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 36fbffffca680000e6680000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

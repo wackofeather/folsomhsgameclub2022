@@ -25,6 +25,7 @@ public class fpsmovement : MonoBehaviour
 
 
         grounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
+        //Debug.Log(grounded);
 
         if (grounded && velocity.y < 0)
         {

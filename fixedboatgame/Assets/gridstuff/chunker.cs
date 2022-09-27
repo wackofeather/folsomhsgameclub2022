@@ -6,16 +6,23 @@ public class chunker : MonoBehaviour
 {
     GameObject currentchunk;
     bool ahaha;
+    public GameObject tiler;
     // Start is called before the first frame update
+    void Awake()
+    {
+        List<GameObject> oldtiles = tiler.GetComponent<GridGenerator>().oldtiles;
+    }
     void Start()
     {
         ahaha = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ahaha == true)
+        //Debug.Log(GameObject.FindWithTag("Grid"));
+       /* if (ahaha == true)
         {
             currentchunk = GameObject.FindWithTag("Grid");
             Debug.Log("whatehec");
@@ -25,7 +32,8 @@ public class chunker : MonoBehaviour
         {
             Debug.Log("gaws ");
             ahaha = true;
-        }
+        }*/
+
         
     }
     /*private void OnTriggerStay(Collider other)
