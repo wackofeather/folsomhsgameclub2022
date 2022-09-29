@@ -7,6 +7,7 @@ public class chunker : MonoBehaviour
 {
     GameObject currentchunk;
     bool ahaha;
+    public GameObject target;
     public GameObject tiler;
     RaycastHit checkhit;
     GameObject checkedchunk;
@@ -24,7 +25,7 @@ public class chunker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         
         
         if (ahaha == true)
@@ -33,12 +34,15 @@ public class chunker : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity);
             currentchunk = hit.transform.gameObject;
+            target.transform.position = gameObject.transform.position;
             ahaha = false;
         }
         if (ahaha == false)
         {
-            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out checkhit, Mathf.Infinity);
-            checkedchunk = checkhit.transform.gameObject;
+            RaycastHit hit2;
+            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit2, Mathf.Infinity);
+            checkedchunk = hit2.transform.gameObject;
+            
         }
         if ((checkedchunk) != currentchunk)
         {
