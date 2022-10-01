@@ -11,6 +11,10 @@ public class chunker : MonoBehaviour
     public GameObject tiler;
     RaycastHit checkhit;
     GameObject checkedchunk;
+    public GameObject generator;
+    public GameObject gridprefab;
+    public float xSpace;
+    public float zSpace;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,30 +30,70 @@ public class chunker : MonoBehaviour
     void Update()
     {
 
-        
-        
-        if (ahaha == true)
+
+
+
+        if ((ahaha == true) && (generator.GetComponent<GridGenerator>().gridinstantiate == false))
         {
             //Debug.Log("meme");
             RaycastHit hit;
             Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity);
-            currentchunk = hit.transform.gameObject;
-            target.transform.position = gameObject.transform.position;
+            if (hit.collider != null)
+            {
+                currentchunk = hit.transform.gameObject;
+            }
+           /* if (hit.collider == null)
+            {
+                GameObject bruh = Instantiate(gridprefab, gameObject.tra)
+                currentchunk = 
+            }*/
+            
+            //target.transform.position = gameObject.transform.position; //s
             ahaha = false;
         }
         if (ahaha == false)
         {
             RaycastHit hit2;
             Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit2, Mathf.Infinity);
-            checkedchunk = hit2.transform.gameObject;
+            //Debug.Log(hit2.collider);
+            if (hit2.collider != null)
+            {
+                
+                checkedchunk = hit2.transform.gameObject;//s
+            }
+            
             
         }
         if ((checkedchunk) != currentchunk)
         {
-            //Debug.Log("gaws ");
+            Debug.Log("gaws ");
+            if (checkedchunk.transform.position.x > currentchunk.transform.position.x)
+            {
+                Debug.Log("ahhhhhhh"); //s
+                float columnLength = generator.GetComponent<GridGenerator>().columnLength;
+                GameObject anag = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.y, currentchunk.transform.position.z), Quaternion.identity);
+                for (int i = 0; i < Mathf.Floor((generator.GetComponent<GridGenerator>().rowLength) / 2); i++)
+                {
+
+                    GameObject anagas = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z - zSpace - (zSpace * (i % columnLength))), Quaternion.identity);
+                    GameObject anaga = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z + zSpace + (zSpace * (i % columnLength))), Quaternion.identity); //Mathf.Ceil((generator.GetComponent<GridGenerator>().columnLength) / 2)
+                    for (int j = 0; j < (generator.GetComponent<GridGenerator>().oldtiles).Count; j++)
+                    {
+                        List<GameObject> oldtiles = generator.GetComponent<GridGenerator>().oldtiles;
+                        if ((oldtiles[j].gameObject != null) && (Mathf.Abs(oldtiles[j].gameObject.transform.localPosition.x-currentchunk.transform.localPosition.x) >= 30)) //s
+                        {
+                            GameObject ahaaaaa = oldtiles[j].gameObject;
+                            oldtiles.RemoveAt(j);
+                            Destroy(ahaaaaa);
+                        }
+                    }
+                    GameObject anagan = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z + zSpace + (zSpace * (i % columnLength))), Quaternion.identity);
+                }
+            }
             ahaha = true;
+            
         }
-        Debug.Log(currentchunk);
+        //Debug.Log(currentchunk);
 
 
 

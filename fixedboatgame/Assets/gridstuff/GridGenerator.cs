@@ -15,6 +15,8 @@ public class GridGenerator : MonoBehaviour
     public GameObject parent;
     GameObject fart;
     GameObject pee;
+    float oldcount;
+    bool oldercount;
     // Start is called before the first frame update
     public List<GameObject> oldtiles = new List<GameObject>();
     void Start()
@@ -88,18 +90,29 @@ public class GridGenerator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+
+            Debug.Log("work");
             
-            gridinstantiate = true;
+           
             for (int i = 0; i < oldtiles.Count; i++)
             {
                 if (oldtiles[i] != null)
                 {
+                    
                     Destroy(oldtiles[i]);
+                    //oldtiles.Remove(oldtiles[i]);
                 }
               
             }
+            gridinstantiate = true;
         }
-
+        /*if (oldtiles.Count == 0)
+        {
+            gridinstantiate = true;
+            oldercount = true;
+            Debug.Log("bruh");
+        }*/
+        
       
     }
 }

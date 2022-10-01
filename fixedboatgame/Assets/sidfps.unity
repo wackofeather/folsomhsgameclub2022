@@ -242,7 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b677aa6f84524f4d8609d0d6cbb390e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1036446345}
   tiler: {fileID: 898064527}
+  generator: {fileID: 898064527}
+  gridprefab: {fileID: 4747091478542436394, guid: f0656990460e5d84f86a29961aeed914, type: 3}
+  xSpace: 10
+  zSpace: 10
 --- !u!1 &750334154
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +478,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036446345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d11d561dabc12b34b989fb67574916f7, type: 3}
   m_Name: 
