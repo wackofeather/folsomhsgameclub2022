@@ -15,7 +15,7 @@ public class chunktestfollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 followvector = new Vector3(followobject.transform.position.x, (followobject.transform.position.y - yoffset), followobject.transform.position.z);
+        Vector3 followvector = new Vector3(followobject.transform.position.x, 0, followobject.transform.position.z);
         gameObject.transform.position = followvector;
     }
 }

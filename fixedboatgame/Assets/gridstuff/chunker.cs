@@ -15,6 +15,7 @@ public class chunker : MonoBehaviour
     public GameObject gridprefab;
     public float xSpace;
     public float zSpace;
+    public GameObject parent;
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,20 +67,27 @@ public class chunker : MonoBehaviour
         }
         if ((checkedchunk) != currentchunk)
         {
+            List<GameObject> oldtiles = generator.GetComponent<GridGenerator>().oldtiles;
             Debug.Log("gaws ");
             if (checkedchunk.transform.position.x > currentchunk.transform.position.x)
             {
                 Debug.Log("ahhhhhhh"); //s
                 float columnLength = generator.GetComponent<GridGenerator>().columnLength;
                 GameObject anag = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.y, currentchunk.transform.position.z), Quaternion.identity);
+                oldtiles.Add(anag);
+                anag.transform.parent = parent.transform;
                 for (int i = 0; i < Mathf.Floor((generator.GetComponent<GridGenerator>().rowLength) / 2); i++)
                 {
 
                     GameObject anagas = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z - zSpace - (zSpace * (i % columnLength))), Quaternion.identity);
+                    oldtiles.Add(anagas);
+                    anagas.transform.parent = parent.transform;
                     GameObject anaga = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z + zSpace + (zSpace * (i % columnLength))), Quaternion.identity); //Mathf.Ceil((generator.GetComponent<GridGenerator>().columnLength) / 2)
+                    oldtiles.Add(anaga);
+                    anaga.transform.parent = parent.transform;
                     for (int j = 0; j < (generator.GetComponent<GridGenerator>().oldtiles).Count; j++)
                     {
-                        List<GameObject> oldtiles = generator.GetComponent<GridGenerator>().oldtiles;
+                       
                         if ((oldtiles[j].gameObject != null) && (Mathf.Abs(oldtiles[j].gameObject.transform.localPosition.x-currentchunk.transform.localPosition.x) >= 30)) //s
                         {
                             GameObject ahaaaaa = oldtiles[j].gameObject;
@@ -88,6 +96,8 @@ public class chunker : MonoBehaviour
                         }
                     }
                     GameObject anagan = Instantiate(gridprefab, new Vector3(currentchunk.transform.position.x + xSpace + (xSpace * (2 % columnLength)), currentchunk.transform.position.z, currentchunk.transform.position.z + zSpace + (zSpace * (i % columnLength))), Quaternion.identity);
+                    oldtiles.Add(anagan);
+                    anagan.transform.parent = parent.transform;
                 }
             }
             ahaha = true;
