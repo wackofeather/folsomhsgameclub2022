@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: New Material 1
-  m_Shader: {fileID: -6465566751694194690, guid: 28a6ffbf496a02c4393ee6765f1d1249, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 27d9ec73cb8e04f4c98c017993c60670, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -85,6 +85,30 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_5a71761c9e6140dbb3fbd3994f1e529f_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_811ae4c71cc14dffb433ad2555598f2e_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_8e220adda08d41fa9775eb07cc68cb78_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_94303e5441574a6d961f218050afe2a1_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_9aa92c0f98024bada8497a4c6b115141_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_adcd01e5fa394d2cb44150ff9bd0705e_Out_0:
+        m_Texture: {fileID: 2800000, guid: ff8e08538b65ad9479403db433ecb774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _agagag:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -133,6 +157,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -153,7 +178,7 @@ Material:
     - _depthdistance: 1.02
     - _depthstrength: 1.1
     - _displace_strength: 0
-    - _normal_tile: 1
+    - _normal_tile: 0.08
     - _normalstrength: 1
     - _pan_strength: 0.5
     - _refractstrength: 0.12
@@ -167,4 +192,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Vector2: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector3: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
