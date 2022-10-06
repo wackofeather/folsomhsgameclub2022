@@ -22,6 +22,7 @@ public class ghostsailing : MonoBehaviour
     bool teeheefunny;
     float rotationstate;
     float mixedboatangle;
+
     // Start is called before the first frame update
     void Start()
     {

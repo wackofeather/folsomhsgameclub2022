@@ -50,6 +50,7 @@ public class supersailing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(mixedboatangle);
         sailanglefromzero = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
         mixedboatangle = boat.transform.localEulerAngles.y-windvector.transform.localEulerAngles.y;
         //float amogustest = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
