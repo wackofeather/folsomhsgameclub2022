@@ -28,7 +28,7 @@ public class supersailing : MonoBehaviour
     float rotationstate;
     bool changemind;
     public GameObject ghostsail;
-    bool ghostsailfollow;
+    public bool ghostsailfollow;
     bool ghostinstantiate;
     float ghostrotate;
     Quaternion sailimp;
@@ -38,6 +38,7 @@ public class supersailing : MonoBehaviour
     Quaternion whathe;
     bool howtho;
     float whatheEuler;
+    public bool fartsysus;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +55,7 @@ public class supersailing : MonoBehaviour
         sailanglefromzero = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
         mixedboatangle = boat.transform.localEulerAngles.y-windvector.transform.localEulerAngles.y;
         //float amogustest = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
-        //Debug.Log(mixedboatangle);
+        //Debug.Log(ghostsailfollow);
         if ((mixedboatangle > 20) && (mixedboatangle < 170))
         {
 
@@ -449,8 +450,14 @@ public class supersailing : MonoBehaviour
         //Debug.Log("GF" + ghostsailfollow);
        // Debug.Log("GI" + ghostinstantiate);
         
-        
-        
+        if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
+        {
+            fartsysus = true;
+        }
+        if (ghostsail.transform.localRotation != gameObject.transform.localRotation)
+        {
+            fartsysus = false;
+        }
 
         if ((bruhangle > 0) && (bruhangle < 60))
         {
