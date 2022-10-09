@@ -1340,6 +1340,7 @@ MonoBehaviour:
   sailwindangle: 0
   boat: {fileID: 479764439}
   force: 1
+  maxSpeed: 1
 --- !u!33 &274040662197032961
 MeshFilter:
   m_ObjectHideFlags: 0

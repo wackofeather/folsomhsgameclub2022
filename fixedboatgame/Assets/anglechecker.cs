@@ -11,6 +11,7 @@ public class anglechecker : MonoBehaviour
     public GameObject boat;
     float sailanglefromzero;
     public float force;
+    public float maxSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +45,7 @@ public class anglechecker : MonoBehaviour
         }
         if (bruhangle > 40 && bruhangle < 70)
         {
-            if ((sailanglefromzero < 35) && (ghostsailfollow == true))
+            if ((sailanglefromzero < 35) && (sailanglefromzero > 20) && (ghostsailfollow == true))
             {
                 rb.AddRelativeForce(Vector3.back); //sss
                 Debug.Log("whataahaha");
@@ -53,7 +54,7 @@ public class anglechecker : MonoBehaviour
         }
         if (bruhangle > 70 && bruhangle < 100)
         {
-            if ((sailanglefromzero < 45) && (ghostsailfollow == true))
+            if ((sailanglefromzero < 45) && (sailanglefromzero > 35) && (ghostsailfollow == true))
             {
                 rb.AddRelativeForce(Vector3.back); //sss
                 Debug.Log("whataahaha");
@@ -62,7 +63,7 @@ public class anglechecker : MonoBehaviour
         }
         if (bruhangle > 100 && bruhangle < 120)
         {
-            if ((sailanglefromzero < 60) && (ghostsailfollow == true))
+            if ((sailanglefromzero < 60) && (sailanglefromzero > 45) && (ghostsailfollow == true))
             {
                 rb.AddRelativeForce(Vector3.back); //sss
                 Debug.Log("whataahaha");
@@ -71,7 +72,7 @@ public class anglechecker : MonoBehaviour
         }
         if (bruhangle > 120 && bruhangle < 150)
         {
-            if ((sailanglefromzero < 75) && (ghostsailfollow == true))
+            if ((sailanglefromzero < 75) && (sailanglefromzero > 60) && (ghostsailfollow == true))
             {
                 rb.AddRelativeForce(Vector3.back); //sss
                 Debug.Log("whataahaha");
@@ -80,7 +81,7 @@ public class anglechecker : MonoBehaviour
         }
         if (bruhangle > 150 && bruhangle < 170)
         {
-            if ((sailanglefromzero < 75) && (ghostsailfollow == true))
+            if ((sailanglefromzero < 91) && (sailanglefromzero > 75) && (ghostsailfollow == true))
             {
                 rb.AddRelativeForce(Vector3.back); //sss
                 Debug.Log("whataahaha");
@@ -89,6 +90,6 @@ public class anglechecker : MonoBehaviour
         }
         //Debug.Log(sailwindangle);
 
-
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }
