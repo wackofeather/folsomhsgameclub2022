@@ -12,14 +12,15 @@ public class anglechecker : MonoBehaviour
     float sailanglefromzero;
     public float force;
     public float maxSpeed;
+    public bool goofyahash;
     // Start is called before the first frame update
     void Start()
     {
-
+        goofyahash = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         /*float angle = boat.transform.rotation.eulerAngles.y;
         float exComponent = Mathf.Cos(angle) * force;
@@ -38,8 +39,13 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 20) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+                //Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
@@ -47,8 +53,13 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 35) && (sailanglefromzero > 20) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+               // Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
@@ -56,8 +67,13 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 45) && (sailanglefromzero > 35) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+                //Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
@@ -65,8 +81,13 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 60) && (sailanglefromzero > 45) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+                //Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
@@ -74,8 +95,13 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 75) && (sailanglefromzero > 60) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+                //Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
@@ -83,13 +109,26 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 91) && (sailanglefromzero > 75) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back); //sss
-                Debug.Log("whataahaha");
+                rb.AddRelativeForce(Vector3.back * force); //sss
+                //Debug.Log("whataahaha");
+                goofyahash = true;
+            }
+            else
+            {
+                goofyahash = false;
             }
             //Debug.Log(sailwindangle);
         }
-        //Debug.Log(sailwindangle);
+        
+        Debug.Log(goofyahash);
+       /* if (goofyahash == false)
+        {
+            if (rb.velocity.magnitude > 0)
+            {
+               rb.AddRelativeForce(Vector3.forward * (1/rb.velocity.magnitude));
+            }
 
+        }*/
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }
