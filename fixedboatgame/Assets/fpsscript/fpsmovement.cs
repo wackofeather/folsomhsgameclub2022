@@ -2,46 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fpsmovement : MonoBehaviour
+public class PlayerCam : MonoBehaviour
 {
-    public CharacterController charcontroller;
-    public float speed;
-    public float gravity = -9.81f;
-    Vector3 velocity;
-    public Transform groundcheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-    public float jumpheight = 3f;
-    bool grounded;
-    // Start is called before the first frame update
-    void Start()
+    public float sensX;
+    public float sensY;
+
+    public Transform orientation;
+
+    float xRotation;
+    float yRotation;
+
+    private void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
+        yRotation += mouseX;
 
-        grounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
-        //Debug.Log(grounded);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        if (grounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpheight * -2 * gravity);
-        }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        charcontroller.Move(Vector3.Normalize(move) * speed * Time.deltaTime);
-        velocity.y += gravity * Time.deltaTime;
-        charcontroller.Move(velocity * Time.deltaTime);
+       
     }
 }

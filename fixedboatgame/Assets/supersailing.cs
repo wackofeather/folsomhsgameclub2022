@@ -32,11 +32,9 @@ public class supersailing : MonoBehaviour
     bool ghostinstantiate;
     float ghostrotate;
     Quaternion sailimp;
-    bool whytho;
     Quaternion bruhtho;
     float sailimpy;
     Quaternion whathe;
-    bool howtho;
     float whatheEuler;
     public bool fartsysus;
     // Start is called before the first frame update
@@ -116,7 +114,6 @@ public class supersailing : MonoBehaviour
             }
 
             float huh = (2 * amogus) / 0.01f;
-            float huhh = 0.2f;
             if (rotationstate == 1) // 1 is right, -1 is left
             {
                 if (easeangle > -10)
