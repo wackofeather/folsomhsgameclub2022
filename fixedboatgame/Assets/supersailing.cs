@@ -37,6 +37,8 @@ public class supersailing : MonoBehaviour
     Quaternion whathe;
     float whatheEuler;
     public bool fartsysus;
+    bool whytho;
+    bool howtho;
     // Start is called before the first frame update
     void Start()
     {
