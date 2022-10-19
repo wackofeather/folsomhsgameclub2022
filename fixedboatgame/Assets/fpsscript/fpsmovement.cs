@@ -13,6 +13,10 @@ public class fpsmovement : MonoBehaviour
     public LayerMask groundMask;
     public float jumpheight = 3f;
     bool grounded;
+    public LayerMask boatground;
+    bool boated;
+    public GameObject boatparent;
+    public GameObject child;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,16 @@ public class fpsmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      boated = Physics.CheckSphere(groundcheck.position, groundDistance, boatground);
+        if (boated == true)
+        {
+           child.transform.parent = boatparent.transform;
+        }
+        if (boated == false)
+        {
+            child.transform.parent = null;
+        }
+       
 
         grounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
         //Debug.Log(grounded);

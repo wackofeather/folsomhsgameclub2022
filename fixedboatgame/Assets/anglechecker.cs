@@ -20,7 +20,7 @@ public class anglechecker : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         /*float angle = boat.transform.rotation.eulerAngles.y;
         float exComponent = Mathf.Cos(angle) * force;
@@ -39,7 +39,7 @@ public class anglechecker : MonoBehaviour
         {
             if ((sailanglefromzero < 20) && (ghostsailfollow == true))
             {
-                rb.AddRelativeForce(Vector3.back * force); //sss
+                rb.AddRelativeForce(Vector3.back * force); //ssss
                 //Debug.Log("whataahaha");
                 goofyahash = true;
             }
