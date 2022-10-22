@@ -120,7 +120,7 @@ public class anglechecker : MonoBehaviour
             //Debug.Log(sailwindangle);
         }
         
-        Debug.Log(goofyahash);
+        //Debug.Log(goofyahash);
        /* if (goofyahash == false)
         {
             if (rb.velocity.magnitude > 0)

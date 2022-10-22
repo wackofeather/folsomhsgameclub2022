@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,6 +186,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &167824777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167824778}
+  m_Layer: 6
+  m_Name: sitdownleft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167824778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167824777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.36, y: 0, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 924104955}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &194838824
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +327,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a835c3af8a341f46aa37329edc4edab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &371117039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371117040}
+  m_Layer: 6
+  m_Name: sitdownright
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371117040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371117039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42, y: 0, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 924104955}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &442714907
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,12 +845,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833754718}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6a403da743aeb7489b5decce48a9a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraboi: {fileID: 1685826154}
+  duckheight: 0.75
 --- !u!65 &833754721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -798,7 +861,7 @@ BoxCollider:
   m_GameObject: {fileID: 833754718}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1.63, z: 0}
@@ -841,6 +904,8 @@ Transform:
   - {fileID: 983553260}
   - {fileID: 1667802484}
   - {fileID: 1171117154}
+  - {fileID: 371117040}
+  - {fileID: 167824778}
   m_Father: {fileID: 2129747615}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1436,6 +1501,7 @@ MonoBehaviour:
     m_Bits: 64
   boatparent: {fileID: 449267919}
   child: {fileID: 1698841690}
+  sail: {fileID: 1667802483}
 --- !u!143 &1605673952
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1705,7 +1771,6 @@ GameObject:
   - component: {fileID: 1811305649}
   - component: {fileID: 1811305652}
   - component: {fileID: 1811305651}
-  - component: {fileID: 1811305650}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -1728,19 +1793,6 @@ Transform:
   m_Father: {fileID: 700990339}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -3.03, y: 0, z: 0}
---- !u!65 &1811305650
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811305648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1811305651
 MeshRenderer:
   m_ObjectHideFlags: 0

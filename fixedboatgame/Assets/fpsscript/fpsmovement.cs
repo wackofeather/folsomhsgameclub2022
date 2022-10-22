@@ -18,6 +18,10 @@ public class fpsmovement : MonoBehaviour
     public GameObject boatparent;
     public GameObject child;
     Vector3 _savePosition;
+    public GameObject sail;
+    bool whichside;
+    bool hassitdown;
+    bool funsyss;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +31,27 @@ public class fpsmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        boated = Physics.CheckSphere(groundcheck.position, groundDistance, boatground);
+       
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            
+                    Debug.Log(whichside);
+                    float mixedboatangle = sail.GetComponent<supersailing>().mixedboatangle;
+                    if ((mixedboatangle > 20) && (mixedboatangle < 170))
+                    {
+                        whichside = true; //sitdownleft
+                    }
+                    if ((mixedboatangle < 340) && (mixedboatangle > 190))
+                    {
+                        whichside = false; // sitdownright
+                    }
+            
+           
+       
+       
+        }
+         boated = Physics.CheckSphere(groundcheck.position, groundDistance, boatground);
           if (boated == true)
           {
              child.transform.parent = boatparent.transform;
