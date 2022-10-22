@@ -20,7 +20,7 @@ public class anglechecker : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         /*float angle = boat.transform.rotation.eulerAngles.y;
         float exComponent = Mathf.Cos(angle) * force;

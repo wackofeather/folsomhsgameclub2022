@@ -17,7 +17,7 @@ public class echecker : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Debug.Log(issailing);
+       // Debug.Log(issailing);
         
         if (issailinginstantiate == true)
         {
