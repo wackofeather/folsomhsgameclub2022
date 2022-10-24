@@ -31,6 +31,7 @@ public class GridGenerator : MonoBehaviour
         {
             
             GameObject initialinstante = Instantiate(gridprefab, new Vector3(Player.position.x, 0, Player.position.z), Quaternion.identity);
+            Debug.Log(initialinstante.transform.position.z);
             oldtiles.Add(initialinstante);
             for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
             {
@@ -47,7 +48,7 @@ public class GridGenerator : MonoBehaviour
             initialinstante.transform.parent = parent.transform;
             for (int i=0; i<Mathf.Floor(columnLength/2); i++)
             {
-                fart = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (i % columnLength)), 0, 0), Quaternion.identity);
+                fart = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (i % columnLength)), 0, initialinstante.transform.position.z), Quaternion.identity);
                 for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
                 {
                     GameObject shsh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
@@ -65,7 +66,7 @@ public class GridGenerator : MonoBehaviour
             }
             for (int i = 0; i < Mathf.Floor(columnLength / 2); i++)
             {
-                pee = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (i % columnLength)), 0, 0), Quaternion.identity);
+                pee = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (i % columnLength)), 0, initialinstante.transform.position.z), Quaternion.identity);
                 for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
                 {
                     GameObject huhuh = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
