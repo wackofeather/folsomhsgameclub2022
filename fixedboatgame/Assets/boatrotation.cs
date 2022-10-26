@@ -8,7 +8,8 @@ public class boatrotation : MonoBehaviour
     float boatangle = 270;
     public GameObject boat;
     public float isrotating;
-    /*public GameObject sailingchecker;*/
+    public GameObject player;
+    bool funsyss;
     void Start()
     {
         
@@ -17,9 +18,12 @@ public class boatrotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*bool issailing = sailingchecker.GetComponent<echecker>().issailing;*/
+
+      
         /*if (issailing == true)
         {*/
+        if (funsyss == true)
+        {
             gameObject.transform.rotation = Quaternion.Euler(0f, boatangle, 0f);
             isrotating = 0;
             if (Input.GetMouseButton(0))
@@ -32,10 +36,16 @@ public class boatrotation : MonoBehaviour
                 boatangle -= 40f * Time.deltaTime;
                 isrotating = -1;
             }
+        }
+          
         /*}*/
         
 
         
         
+    }
+    private void LateUpdate()
+    {
+        funsyss = player.GetComponent<fpsmovement>().funsyss;
     }
 }

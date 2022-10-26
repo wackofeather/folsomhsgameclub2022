@@ -89,7 +89,7 @@ public class GridGenerator : MonoBehaviour
                 gridinstantiate = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+       /* if (Input.GetKeyDown(KeyCode.E))
         {
 
             Debug.Log("work");
@@ -106,7 +106,7 @@ public class GridGenerator : MonoBehaviour
               
             }
             gridinstantiate = true;
-        }
+        }*/
         /*if (oldtiles.Count == 0)
         {
             gridinstantiate = true;

@@ -7,10 +7,11 @@ public class fpsmovement : MonoBehaviour
     public CharacterController charcontroller;
     public float speed;
     public float gravity = -9.81f;
-    Vector3 velocity;
+    Vector3 velocity = Vector3.zero;
     public Transform groundcheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public float switchtime;
     public float jumpheight = 3f;
     bool grounded;
     public LayerMask boatground;
@@ -21,7 +22,7 @@ public class fpsmovement : MonoBehaviour
     public GameObject sail;
     bool whichside;
     bool hassitdown;
-    bool funsyss;
+    public bool funsyss;
     public GameObject sitdownleft;
     public GameObject sitdownright;
     // Start is called before the first frame update
@@ -72,11 +73,13 @@ public class fpsmovement : MonoBehaviour
             }
             if (whichside == true)
             {
-                gameObject.transform.position = sitdownleft.transform.position;
+                gameObject.transform.position = Vector3.SmoothDamp(transform.position, sitdownleft.transform.position, ref velocity, switchtime);
+                //gameObject.transform.position = sitdownleft.transform.position;
             }
             if (whichside == false)
             {
-                gameObject.transform.position = sitdownright.transform.position;
+                gameObject.transform.position = Vector3.SmoothDamp(transform.position, sitdownright.transform.position, ref velocity, switchtime);
+                //gameObject.transform.position = sitdownright.transform.position;
             }
         }
       
