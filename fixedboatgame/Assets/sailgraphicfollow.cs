@@ -14,6 +14,7 @@ public class sailgraphicfollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Quaternion.Lerp(gameObject.transform.rotation, behindsail.transform.rotation, 0.1f);
+        //gameObject.transform.rotation = behindsail.transform.rotation;
+       gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, behindsail.transform.rotation, 0.1f);
     }
 }
