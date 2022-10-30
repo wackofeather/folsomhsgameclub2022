@@ -94,7 +94,7 @@ MeshCollider:
   m_GameObject: {fileID: 4747091478542436394}
   m_Material: {fileID: 13400000, guid: 75ac665d7cd3ca54b9120dcfee18a03e, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -114,3 +114,6 @@ MonoBehaviour:
   asset: {fileID: 0}
   target: {fileID: 0}
   gridsize: 10
+  player: {fileID: 0}
+  sheshsk: 0
+  genertorer: {fileID: 0}

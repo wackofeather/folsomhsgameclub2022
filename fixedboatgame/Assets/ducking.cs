@@ -35,7 +35,7 @@ public class ducking : MonoBehaviour
       
            if (Input.GetKey(KeyCode.E) == false)
         {
-            Debug.Log("heheh");
+           // Debug.Log("heheh");
             if (duckinstantiate == false)
             {
                 cameraduck = new Vector3(cameraboi.transform.localPosition.x, cameraboi.transform.localPosition.y + duckheight, cameraboi.transform.localPosition.z); //s

@@ -13,6 +13,7 @@ public class anglechecker : MonoBehaviour
     public float force;
     public float maxSpeed;
     public bool goofyahash;
+    public float gravity;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class anglechecker : MonoBehaviour
         float yComponent = Mathf.Sin(angle) * force;
 
         Vector3 forward = new Vector3(-exComponent, -yComponent, 0);*/
-    
+        
 
         Quaternion boatangle = boat.transform.rotation;
         bool ghostsailfollow = GetComponent<supersailing>().fartsysus;
@@ -35,6 +36,7 @@ public class anglechecker : MonoBehaviour
         sailanglefromzero = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
         bruhangle = Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation);
         sailwindangle = Quaternion.Angle(gameObject.transform.rotation, windvector.transform.rotation);
+        //rb.AddForce(Vector3.down * gravity);
         if (bruhangle > 20 && bruhangle < 40)
         {
             if ((sailanglefromzero < 20) && (ghostsailfollow == true))

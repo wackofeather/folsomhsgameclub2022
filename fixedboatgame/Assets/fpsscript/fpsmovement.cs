@@ -35,7 +35,7 @@ public class fpsmovement : MonoBehaviour
     void Update()
     {
        
-         boated = Physics.CheckSphere(groundcheck.position, 0.6f, boatground);
+         boated = Physics.CheckSphere(groundcheck.position, 1f, boatground);
           if (boated == true)
           {
              child.transform.parent = boatparent.transform;
