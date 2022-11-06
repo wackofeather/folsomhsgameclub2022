@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/shehs 2.unity
+    guid: 4cc437fb7280c0947812c18183ceef85
   m_configObjects: {}

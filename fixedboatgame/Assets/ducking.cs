@@ -22,7 +22,7 @@ public class ducking : MonoBehaviour
        
            if (Input.GetKey(KeyCode.E))
         {
-            Debug.Log("bbruh");
+            //Debug.Log("bbruh");
             shessjs = true;
             if (duckinstantiate == true)
             {

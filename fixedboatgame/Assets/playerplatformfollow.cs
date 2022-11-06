@@ -6,6 +6,7 @@ public class playerplatformfollow : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bree;
+    public GameObject boatrotater;
     void Start()
     {
         
@@ -19,6 +20,6 @@ public class playerplatformfollow : MonoBehaviour
           Vector3 goofy = shit * bree.transform.position;
           transform.position = goofy;*/
         transform.position = bree.transform.position;
-        transform.rotation = bree.transform.rotation;
+        transform.rotation = boatrotater.transform.rotation;
     }
 }

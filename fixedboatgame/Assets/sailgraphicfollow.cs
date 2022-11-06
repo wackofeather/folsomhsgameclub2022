@@ -5,6 +5,7 @@ using UnityEngine;
 public class sailgraphicfollow : MonoBehaviour
 {
     public GameObject behindsail;
+    public GameObject boatrotater;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,7 @@ public class sailgraphicfollow : MonoBehaviour
     void Update()
     {
         //gameObject.transform.rotation = behindsail.transform.rotation;
+        
        gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, behindsail.transform.rotation, 0.1f);
     }
 }

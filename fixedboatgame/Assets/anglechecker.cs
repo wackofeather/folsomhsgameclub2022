@@ -14,6 +14,7 @@ public class anglechecker : MonoBehaviour
     public float maxSpeed;
     public bool goofyahash;
     public float gravity;
+    public float boatvelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class anglechecker : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         /*float angle = boat.transform.rotation.eulerAngles.y;
         float exComponent = Mathf.Cos(angle) * force;
         float yComponent = Mathf.Sin(angle) * force;
@@ -121,16 +123,17 @@ public class anglechecker : MonoBehaviour
             }
             //Debug.Log(sailwindangle);
         }
-       
-        //Debug.Log(goofyahash);
-       /* if (goofyahash == false)
-        {
-            if (rb.velocity.magnitude > 0)
-            {
-               rb.AddRelativeForce(Vector3.forward * (1/rb.velocity.magnitude));
-            }
 
-        }*/
+        //Debug.Log(goofyahash);
+        /* if (goofyahash == false)
+         {
+             if (rb.velocity.magnitude > 0)
+             {
+                rb.AddRelativeForce(Vector3.forward * (1/rb.velocity.magnitude));
+             }
+
+         }*/
+        boatvelocity = rb.velocity.magnitude;
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }

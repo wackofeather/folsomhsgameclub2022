@@ -371,16 +371,16 @@ public class supersailing : MonoBehaviour
                     {
                         if (amogus > 85)
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.9f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 3f);
                         }
                         if (amogus > 55)
                         {
                             //Debug.Log("itworks!!!!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 2.5f);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.5f); //use huh somehow
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 2f); //use huh somehow
                                                                                                                                                //huhh += 0.1f;
                         }
 
@@ -393,17 +393,17 @@ public class supersailing : MonoBehaviour
                     {
                         if (amogus > 85)
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.9f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 3f);
                         }
                         //PROBLEM SPOT
                         if (amogus > 55)
                         {
                             //Debug.Log("itworks!");
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.7f);
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 2.5f);
                         }
                         else
                         {
-                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 0.5f); // use huh somehow .
+                            gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 2f); // use huh somehow .
                                                                                                                                                //huh += 0.1f;
                         }
 
