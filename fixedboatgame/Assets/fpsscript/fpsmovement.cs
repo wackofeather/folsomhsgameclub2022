@@ -34,7 +34,7 @@ public class fpsmovement : MonoBehaviour
     float boatvelocity;
     bool ispowered;
     float counterweight;
-    float memes;
+    public float memes;
     Vector3 smoothdampvelocity = Vector3.zero;
     public GameObject boatrotater;
     public Camera cameramain;
@@ -45,16 +45,18 @@ public class fpsmovement : MonoBehaviour
     Quaternion charrotation;
     Quaternion charrotationinverse;
     public float bugup;
+   
     // Start is called before the first frame update
     void Start()
     {
-
+        FindObjectOfType<AudioManager>().Play("music");
         getoff = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Time.deltaTime);
         ispowered = sail.GetComponent<anglechecker>().goofyahash;
         boated = Physics.CheckSphere(groundcheck.position, 1f, boatground);
           if (boated == true)
@@ -105,6 +107,7 @@ public class fpsmovement : MonoBehaviour
             {
                 whichside = true; //sitdownleft
 
+
             }
             if (distanceright < distanceleft)
             {
@@ -130,7 +133,7 @@ public class fpsmovement : MonoBehaviour
             if (getoff == true)
             {
                 boattilt = Quaternion.Euler(0, 0, 0);
-                boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 0.3f);
+                boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 30 * Time.deltaTime);
                 if (boatrotater.transform.localRotation == Quaternion.identity)
                 {
                     funsyss = false;
@@ -152,7 +155,7 @@ public class fpsmovement : MonoBehaviour
                     {
                         if (ispowered == false)
                         {
-                            memes = 0.2f;
+                            memes = 20f;
                             counterweight = 0;
 
                             boattilt = Quaternion.Euler(0, 0, 5);
@@ -165,28 +168,29 @@ public class fpsmovement : MonoBehaviour
                             {
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                    memes = 0.1f;
+                                    memes = 10;
                                 }
                                 if (Input.GetKeyUp(KeyCode.R))
                                 {
-                                    memes = 0.2f;
+                                    memes = 20;
                                 }
                             }
                             if (boatrotater.transform.localEulerAngles.z > 14)
                             {
 
-                                memes = 0.2f;
+                                //memes = 0.2f;
                                 if (Input.GetKey(KeyCode.R))
                                 {
                                     //Debug.Log(boatrotater.transform.localEulerAngles.z);
                                     counterweight = 75;
-
+                                    memes = 10;
                                     headback = new Vector3(0, 4.04f, -1.25f);
                                     // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
+                                    memes = 20;
                                     Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
@@ -197,9 +201,9 @@ public class fpsmovement : MonoBehaviour
                             boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
                         }
                         //Vector3 headbackdamp = new Vector3(0, 4.04f, headback.z);
-                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 0.2f));
+                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
                         // boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
-                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 0.2f);
+                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, memes * Time.deltaTime);
 
                         //boatrotater.transform.localRotation = Quaternion.Euler(0, 0, -5); //right 8
                     }
@@ -207,12 +211,13 @@ public class fpsmovement : MonoBehaviour
 
                     if (whichside == false)
                     {
+                        memes = 25;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
                         //cameramain.transform.localPosition = headback;
-                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 0.2f));
+                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
                         boattilt = Quaternion.Euler(0, 0, 90);
-                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 0.1f);
+                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, memes * Time.deltaTime);
                         //boatrotater.transform.localRotation = Quaternion.Euler(0, 0, -8);
                     }
 
@@ -291,9 +296,9 @@ public class fpsmovement : MonoBehaviour
                     {
                         if (ispowered == false)
                         {
-                            memes = 0.2f;
+                            //memes = 0.2f;
                             counterweight = 0;
-                            
+                            memes = 20;
                             boattilt = Quaternion.Euler(0, 0, -5);
                            
                         }
@@ -304,28 +309,31 @@ public class fpsmovement : MonoBehaviour
                             {
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                    memes = 0.1f;
+                                    memes = 10;
+                                    //memes = 0.1f;
                                 }
                                 if (Input.GetKeyUp(KeyCode.R))
                                 {
-                                    memes = 0.2f;
+                                    memes = 20;
+                                    //memes = 0.2f;
                                 }
                             }
                             if (boatrotater.transform.localEulerAngles.z < 346)
                             {
 
-                                memes = 0.2f;
+                                
                                 if (Input.GetKey(KeyCode.R))
                                 {
                                     //Debug.Log(boatrotater.transform.localEulerAngles.z);
                                     counterweight = 75;
-
+                                    memes = 10;
                                      headback = new Vector3(0, 4.04f, -1.25f);
                                    // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
+                                    memes = 20;
                                     Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
@@ -336,20 +344,21 @@ public class fpsmovement : MonoBehaviour
                             boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
                         }
                         //Vector3 headbackdamp = new Vector3(0, 4.04f, headback.z);
-                        cameramain.transform.localPosition = new Vector3(0,4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 0.2f));
+                        cameramain.transform.localPosition = new Vector3(0,4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
                        // boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
-                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 0.2f);
+                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, memes * Time.deltaTime);
 
                         //boatrotater.transform.localRotation = Quaternion.Euler(0, 0, -5); //right 8
                     }
                     if (whichside == true)
                     {
+                        memes = 25;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
                         //cameramain.transform.localPosition = headback;
-                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 0.2f));
+                        cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
                         boattilt = Quaternion.Euler(0, 0, -90);
-                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 0.1f);
+                        boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, memes * Time.deltaTime);
                         //boatrotater.transform.localRotation = Quaternion.Euler(0, 0, -8);
                     }
                     //left -8
@@ -360,14 +369,14 @@ public class fpsmovement : MonoBehaviour
                 if (whichside == true)
                 {
                     shee = sitdownleft;
-                    gameObject.transform.position = Vector3.SmoothDamp(transform.position, shee.transform.position, ref smoothdampvelocity, switchtime);
+                    gameObject.transform.position = Vector3.SmoothDamp(transform.position, shee.transform.position, ref smoothdampvelocity, switchtime * Time.deltaTime);
                     
                     //gameObject.transform.position = sitdownleft.transform.position;
                 }
                 if (whichside == false)
                 {
                     shee = sitdownright;
-                    gameObject.transform.position = Vector3.SmoothDamp(transform.position, shee.transform.position, ref smoothdampvelocity, switchtime);
+                    gameObject.transform.position = Vector3.SmoothDamp(transform.position, shee.transform.position, ref smoothdampvelocity, switchtime * Time.deltaTime);
                     //gameObject.transform.position = sitdownright.transform.position;
                 }
 

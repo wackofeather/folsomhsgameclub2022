@@ -17,6 +17,6 @@ public class sailgraphicfollow : MonoBehaviour
     {
         //gameObject.transform.rotation = behindsail.transform.rotation;
         
-       gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, behindsail.transform.rotation, 0.1f);
+       gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, behindsail.transform.rotation, 10 * Time.deltaTime);
     }
 }
