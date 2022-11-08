@@ -40,6 +40,7 @@ public class supersailing : MonoBehaviour
     bool whytho;
     bool howtho;
     public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -672,5 +673,9 @@ public class supersailing : MonoBehaviour
 
 
         //Debug.Log(rotationstate);
+    }
+    private void FixedUpdate()
+    {
+      
     }
 }

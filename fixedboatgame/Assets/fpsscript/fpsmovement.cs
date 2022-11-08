@@ -155,7 +155,7 @@ public class fpsmovement : MonoBehaviour
                     {
                         if (ispowered == false)
                         {
-                            memes = 20f;
+                            memes = 10f;
                             counterweight = 0;
 
                             boattilt = Quaternion.Euler(0, 0, 5);
@@ -168,11 +168,11 @@ public class fpsmovement : MonoBehaviour
                             {
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                    memes = 10;
+                                    memes = 5;
                                 }
                                 if (Input.GetKeyUp(KeyCode.R))
                                 {
-                                    memes = 20;
+                                    memes = 10;
                                 }
                             }
                             if (boatrotater.transform.localEulerAngles.z > 14)
@@ -183,14 +183,14 @@ public class fpsmovement : MonoBehaviour
                                 {
                                     //Debug.Log(boatrotater.transform.localEulerAngles.z);
                                     counterweight = 75;
-                                    memes = 10;
+                                    memes = 5;
                                     headback = new Vector3(0, 4.04f, -1.25f);
                                     // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 20;
+                                    memes = 10;
                                     Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
@@ -211,7 +211,7 @@ public class fpsmovement : MonoBehaviour
 
                     if (whichside == false)
                     {
-                        memes = 25;
+                        memes = 15;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
                         //cameramain.transform.localPosition = headback;

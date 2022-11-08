@@ -3003,7 +3003,7 @@ MonoBehaviour:
   sounds:
   - names: music
     clip: {fileID: 8300000, guid: 98f44e21185eeed47b0b916cb57888b8, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 3
     source: {fileID: 0}
     parent: {fileID: 556039142}
@@ -4272,6 +4272,8 @@ MonoBehaviour:
   goofyahash: 0
   gravity: 10
   boatvelocity: 0
+  stopfriction: 2
+  player: {fileID: 239136582}
 --- !u!114 &1667802486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5037,7 +5039,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.40583837, g: 0.6002136, b: 0.9056604, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
