@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class fpsmovement : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class fpsmovement : MonoBehaviour
     public float jumpheight = 3f;
     bool grounded;
     public LayerMask boatground;
+    public LayerMask deathground;
     bool boated;
+    bool isdead;
     public GameObject boatparent;
     public GameObject child;
     public GameObject boat;
@@ -45,7 +48,14 @@ public class fpsmovement : MonoBehaviour
     Quaternion charrotation;
     Quaternion charrotationinverse;
     public float bugup;
-   
+    public float deathspheresize;
+    public GameObject respawnpoint;
+    public GameObject deathcheck1;
+    public float sidedeathsize;
+    public GameObject gameover;
+    public GameObject deathcheck2;
+    public GameObject deathcheck3;
+    public float sidedeathchecksize;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,17 +66,19 @@ public class fpsmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //Debug.Log(Time.deltaTime);
         ispowered = sail.GetComponent<anglechecker>().goofyahash;
+       
         boated = Physics.CheckSphere(groundcheck.position, 1f, boatground);
           if (boated == true)
           {
              child.transform.parent = boatparent.transform;
           }
         if ((boated == false) && (funsyss == false))
-          {
+         {
               child.transform.parent = null;
-          }
+         }
 
 
 
@@ -122,6 +134,7 @@ public class fpsmovement : MonoBehaviour
 
         if (funsyss == true)
         {
+          
            // Debug.Log(whichside);
             float mixedboatangle = sail.GetComponent<supersailing>().mixedboatangle;
             distanceleft = Vector3.Distance(sitdownleft.transform.position, gameObject.transform.position);
@@ -153,6 +166,11 @@ public class fpsmovement : MonoBehaviour
                 {
                     if (whichside == true)
                     {
+                        if ((Physics.CheckSphere(deathcheck3.transform.position, sidedeathchecksize, deathground)))
+                        {
+                            gameover.SetActive(true);
+                            SceneManager.LoadScene("shehs 2");
+                        }
                         if (ispowered == false)
                         {
                             memes = 10f;
@@ -168,11 +186,13 @@ public class fpsmovement : MonoBehaviour
                             {
                                 if (Input.GetKey(KeyCode.R))
                                 {
+                                    headback = new Vector3(0, 4.04f, -1.25f);
                                     memes = 5;
                                 }
-                                if (Input.GetKeyUp(KeyCode.R))
+                                if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 10;
+                                    headback = new Vector3(0, 4.04f, 0);
+                                    memes = 3;
                                 }
                             }
                             if (boatrotater.transform.localEulerAngles.z > 14)
@@ -190,8 +210,8 @@ public class fpsmovement : MonoBehaviour
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 10;
-                                    Debug.Log(counterweight);
+                                    memes = 6;
+                                  //  Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
                                     //cameramain.transform.localPosition = headback;
@@ -211,6 +231,11 @@ public class fpsmovement : MonoBehaviour
 
                     if (whichside == false)
                     {
+                        if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
+                        {
+                            gameover.SetActive(true);
+                            SceneManager.LoadScene("shehs 2");
+                        }
                         memes = 15;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
@@ -294,11 +319,16 @@ public class fpsmovement : MonoBehaviour
                 {
                     if (whichside == false)
                     {
+                        if ((Physics.CheckSphere(deathcheck2.transform.position, sidedeathchecksize, deathground)))
+                        {
+                            gameover.SetActive(true);
+                            SceneManager.LoadScene("shehs 2");
+                        }
                         if (ispowered == false)
                         {
                             //memes = 0.2f;
                             counterweight = 0;
-                            memes = 20;
+                            memes = 10;
                             boattilt = Quaternion.Euler(0, 0, -5);
                            
                         }
@@ -309,12 +339,14 @@ public class fpsmovement : MonoBehaviour
                             {
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                    memes = 10;
+                                    headback = new Vector3(0, 4.04f, -1.25f);
+                                    memes = 5;
                                     //memes = 0.1f;
                                 }
-                                if (Input.GetKeyUp(KeyCode.R))
+                                if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 20;
+                                    headback = new Vector3(0, 4.04f, 0);
+                                    memes = 3;
                                     //memes = 0.2f;
                                 }
                             }
@@ -326,15 +358,15 @@ public class fpsmovement : MonoBehaviour
                                 {
                                     //Debug.Log(boatrotater.transform.localEulerAngles.z);
                                     counterweight = 75;
-                                    memes = 10;
+                                    memes = 5;
                                      headback = new Vector3(0, 4.04f, -1.25f);
                                    // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 20;
-                                    Debug.Log(counterweight);
+                                    memes = 6;
+                                   // Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
                                     //cameramain.transform.localPosition = headback;
@@ -352,6 +384,11 @@ public class fpsmovement : MonoBehaviour
                     }
                     if (whichside == true)
                     {
+                        if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
+                        {
+                            gameover.SetActive(true);
+                            SceneManager.LoadScene("shehs 2");
+                        }
                         memes = 25;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
@@ -412,6 +449,20 @@ public class fpsmovement : MonoBehaviour
         //Vector3 externalMovement = transform.position - _savePosition;
         if (funsyss == false)
         {
+           isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
+            if (isdead)
+            {
+                gameover.SetActive(true);
+                SceneManager.LoadScene("shehs 2");
+                /*  charcontroller.enabled = false;
+                  Debug.Log("oi");
+                  //funsyss = true;
+                  gameObject.transform.position = respawnpoint.transform.position;
+                  if (gameObject.transform.position == respawnpoint.transform.position)
+                  {
+                      charcontroller.enabled = true;
+                  }*/
+            }
             grounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
             //Debug.Log(grounded);
 

@@ -18,10 +18,15 @@ public class pauseMenu : MonoBehaviour
             if (isPaused)
             {
                 Resume();
+                optionsUI.SetActive(false);
             }
             else
             {
-                Pause();
+              if (optionsUI.activeSelf == false)
+              {
+                    Pause();
+              }
+                
             }
         }
     }
@@ -48,6 +53,7 @@ public class pauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         optionsUI.SetActive(true);
+
     }
     public void ExitOptions()
     {
