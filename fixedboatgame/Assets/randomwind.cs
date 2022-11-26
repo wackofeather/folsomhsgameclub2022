@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class randomwind : MonoBehaviour
 {
-    float windangle = 0f;
+    public float wavespeed;
+    public float windangle = 0f;
     public float windchangeminutes;
+    public Material wavewater;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("randangle", 0f, (windchangeminutes * 60));
+       // InvokeRepeating("randangle", 0f, (windchangeminutes * 60)); //ACTIVATE ONCE READY
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-
+        transform.rotation = Quaternion.Euler(new Vector3(0, windangle, 0));
+        float vectorx = Mathf.Sin(Mathf.Deg2Rad * windangle) * wavespeed;
+        float vectory = Mathf.Cos(Mathf.Deg2Rad * windangle) * wavespeed;
+        wavewater.SetFloat("_wavevectorx", vectorx);
+        wavewater.SetFloat("_wavevectory", vectory);
+      // Debug.Log(wavewater.GetFloat("_wavevectory"));
     }
     public void randangle()
     {

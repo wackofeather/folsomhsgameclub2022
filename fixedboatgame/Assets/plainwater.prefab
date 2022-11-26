@@ -114,3 +114,6 @@ MonoBehaviour:
   asset: {fileID: 0}
   target: {fileID: 0}
   gridsize: 10
+  player: {fileID: 0}
+  sheshsk: 0
+  genertorer: {fileID: 0}

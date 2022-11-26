@@ -56,10 +56,14 @@ public class fpsmovement : MonoBehaviour
     public GameObject deathcheck2;
     public GameObject deathcheck3;
     public float sidedeathchecksize;
+    public bool initialsqueeze;
+    public float initialrotation;
+    public bool initialbiglean;
+    public bool isswitching;
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("music");
+      
         getoff = true;
     }
 
@@ -142,13 +146,15 @@ public class fpsmovement : MonoBehaviour
 
 
             
-                boatvelocity = sail.GetComponent<anglechecker>().boatvelocity;
+            boatvelocity = sail.GetComponent<anglechecker>().boatvelocity;
             if (getoff == true)
             {
                 boattilt = Quaternion.Euler(0, 0, 0);
                 boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 30 * Time.deltaTime);
                 if (boatrotater.transform.localRotation == Quaternion.identity)
                 {
+                    Quaternion test = Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 0);
+                    gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, test, 0.7f);
                     funsyss = false;
                 }
             }
@@ -162,8 +168,18 @@ public class fpsmovement : MonoBehaviour
                 }
 
                 //bool sailside;
-                if ((mixedboatangle > 0) && (mixedboatangle < 180))
+                if ((mixedboatangle > 20) && (mixedboatangle < 180))
                 {
+                    if ((boatrotater.transform.localEulerAngles.z < 5) | (boatrotater.transform.localEulerAngles.z > 180))
+                    {
+                        isswitching = true;
+                        memes = 25;
+                    }
+                    if ((boatrotater.transform.localEulerAngles.z > 5) | (boatrotater.transform.localEulerAngles.z < 180))
+                    {
+                        isswitching = false;
+                       
+                    }
                     if (whichside == true)
                     {
                         if ((Physics.CheckSphere(deathcheck3.transform.position, sidedeathchecksize, deathground)))
@@ -173,7 +189,11 @@ public class fpsmovement : MonoBehaviour
                         }
                         if (ispowered == false)
                         {
-                            memes = 10f;
+                            if (isswitching == false)
+                            {
+                                memes = 10f;
+                            }
+                            
                             counterweight = 0;
 
                             boattilt = Quaternion.Euler(0, 0, 5);
@@ -182,43 +202,91 @@ public class fpsmovement : MonoBehaviour
                         if (ispowered == true)
                         {
 
-                            if (boatrotater.transform.localEulerAngles.z < 14)
+                            if (boatrotater.transform.localEulerAngles.z < 15)
                             {
+                                initialbiglean = true;
+                                initialsqueeze = true;
                                 if (Input.GetKey(KeyCode.R))
                                 {
                                     headback = new Vector3(0, 4.04f, -1.25f);
-                                    memes = 5;
+                                    if (isswitching == false)
+                                    {
+                                        memes = 5;
+                                    }
+                                       
+                                    boattilt = Quaternion.Euler(0, 0, 14);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
                                     headback = new Vector3(0, 4.04f, 0);
-                                    memes = 3;
+                                    if (isswitching == false)
+                                    {
+                                        memes = 3;
+                                    }
+                                        
+                                    boattilt = Quaternion.Euler(0, 0, 90);
                                 }
+                               
                             }
-                            if (boatrotater.transform.localEulerAngles.z > 14)
+                            if (boatrotater.transform.localEulerAngles.z > 15)
                             {
 
-                                //memes = 0.2f;
                                 if (Input.GetKey(KeyCode.R))
                                 {
+                                    if (initialsqueeze == true)
+                                    {
+                                        initialrotation = boatrotater.transform.localEulerAngles.z;
+                                        initialsqueeze = false;
+                                    }
+                                    if ((initialbiglean == true) && (initialsqueeze == false))
+                                    {
+                                        headback = new Vector3(0, 4.04f, -1.5f);
+                                        boattilt = Quaternion.Euler(0, 0, initialrotation - 15);
+                                        if (isswitching == false)
+                                        {
+                                             memes = 20;
+                                        }
+                                           
+                                        if ((boatrotater.transform.localEulerAngles.z < (initialrotation - 15) + 1) && (boatrotater.transform.localEulerAngles.z > (initialrotation - 15) - 0.5f))
+                                        {
+                                            initialbiglean = false;
+                                        }
+                                    }
+                                    if ((initialbiglean == false) && (initialsqueeze == false))
+                                    {
+                                        counterweight = 75;
+                                        headback = new Vector3(0, 4.04f, -1.25f);
+                                        boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
+                                        if (isswitching == false)
+                                        {
+                                            memes = 7; //3
+                                        }
+                                            
+                                    }
                                     //Debug.Log(boatrotater.transform.localEulerAngles.z);
-                                    counterweight = 75;
-                                    memes = 5;
-                                    headback = new Vector3(0, 4.04f, -1.25f);
+
+
                                     // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 6;
-                                  //  Debug.Log(counterweight);
+                                    initialbiglean = true;
+                                    initialsqueeze = true;
+                                    if (isswitching == false)
+                                    {
+                                         memes = 10; //15
+                                    }
+                                       
+                                    // Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
                                     //cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
+                                    boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
                                 }
                             }
-                            boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
+                           
                         }
                         //Vector3 headbackdamp = new Vector3(0, 4.04f, headback.z);
                         cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
@@ -231,12 +299,18 @@ public class fpsmovement : MonoBehaviour
 
                     if (whichside == false)
                     {
+                        initialbiglean = true;
+                        initialsqueeze = true;
                         if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
                         {
                             gameover.SetActive(true);
                             SceneManager.LoadScene("shehs 2");
                         }
-                        memes = 15;
+                        if (isswitching == false)
+                        {
+                            memes = 15;
+                        }
+                            
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
                         //cameramain.transform.localPosition = headback;
@@ -315,17 +389,23 @@ public class fpsmovement : MonoBehaviour
                     //right 8 ok
                 }
 
-                if ((mixedboatangle < 360) && (mixedboatangle > 180))
+                if ((mixedboatangle < 340) && (mixedboatangle > 180))
                 {
+                    if ((boatrotater.transform.localEulerAngles.z > 355) | (boatrotater.transform.localEulerAngles.z < 90))
+                    {
+                        memes = 25;
+                    }
                     if (whichside == false)
                     {
                         if ((Physics.CheckSphere(deathcheck2.transform.position, sidedeathchecksize, deathground)))
                         {
+                           // Debug.Log("ahhhhhhh");
                             gameover.SetActive(true);
                             SceneManager.LoadScene("shehs 2");
                         }
                         if (ispowered == false)
                         {
+
                             //memes = 0.2f;
                             counterweight = 0;
                             memes = 10;
@@ -335,45 +415,75 @@ public class fpsmovement : MonoBehaviour
                         if (ispowered == true)
                         {
 
-                            if (boatrotater.transform.localEulerAngles.z > 346)
+                            if (boatrotater.transform.localEulerAngles.z > 345)
                             {
+                                initialbiglean = true;
+                                initialsqueeze = true;
                                 if (Input.GetKey(KeyCode.R))
                                 {
                                     headback = new Vector3(0, 4.04f, -1.25f);
                                     memes = 5;
+                                    boattilt = Quaternion.Euler(0, 0, 346);
                                     //memes = 0.1f;
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
                                     headback = new Vector3(0, 4.04f, 0);
-                                    memes = 3;
+                                    memes = 6;
+                                    boattilt = Quaternion.Euler(0, 0, 270);
                                     //memes = 0.2f;
                                 }
+                              
                             }
-                            if (boatrotater.transform.localEulerAngles.z < 346)
+                            if (boatrotater.transform.localEulerAngles.z < 345) // if this works better or the other one
                             {
 
                                 
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                    //Debug.Log(boatrotater.transform.localEulerAngles.z);
-                                    counterweight = 75;
-                                    memes = 5;
-                                     headback = new Vector3(0, 4.04f, -1.25f);
+                                   if (initialsqueeze == true)
+                                    {
+                                        initialrotation = boatrotater.transform.localEulerAngles.z;
+                                        initialsqueeze = false;
+                                    }
+                                   if ((initialbiglean == true) && (initialsqueeze == false))
+                                    {
+                                        headback = new Vector3(0, 4.04f, -1.5f);
+                                        boattilt = Quaternion.Euler(0, 0, initialrotation + 15);
+                                        memes = 20;
+                                        if ((boatrotater.transform.localEulerAngles.z > (initialrotation + 15)-1) && (boatrotater.transform.localEulerAngles.z < (initialrotation + 15) + 0.5f))
+                                        {
+                                            initialbiglean = false;
+                                        }
+                                    }
+                                   if ((initialbiglean == false) && (initialsqueeze == false))
+                                    {
+                                        counterweight = 75;
+                                        headback = new Vector3(0, 4.04f, -1.25f);
+                                        boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
+                                        memes = 7;
+                                    }
+                                        //Debug.Log(boatrotater.transform.localEulerAngles.z);
+                                      
+                                  
                                    // cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
-                                    memes = 6;
+                                    initialbiglean = true;
+                                    initialsqueeze = true;
+                                    memes = 10;
                                    // Debug.Log(counterweight);
                                     counterweight = 0;
                                     headback = new Vector3(0, 4.04f, 0);
                                     //cameramain.transform.localPosition = headback;
                                     //cameramain.transform.localPosition = Vector3.SmoothDamp(cameramain.transform.localPosition, headback, ref smoothdampvelocity, 0.2f);
+                                    boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
                                 }
+
                             }
-                            boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
+                            
                         }
                         //Vector3 headbackdamp = new Vector3(0, 4.04f, headback.z);
                         cameramain.transform.localPosition = new Vector3(0,4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, headback.z, ref dampvelocity, 20 * Time.deltaTime));
@@ -384,6 +494,8 @@ public class fpsmovement : MonoBehaviour
                     }
                     if (whichside == true)
                     {
+                        initialbiglean = true;
+                        initialsqueeze = true;
                         if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
                         {
                             gameover.SetActive(true);
@@ -401,7 +513,10 @@ public class fpsmovement : MonoBehaviour
                     //left -8
                 }
 
-
+                if ((mixedboatangle < 20) | (mixedboatangle > 340))
+                {
+                  //  Debug.Log("bruhsksajakkaksls");
+                }
 
                 if (whichside == true)
                 {

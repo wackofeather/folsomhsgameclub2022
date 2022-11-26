@@ -10,7 +10,12 @@ public class Sound
 
     public AudioClip clip;
 
+    public bool loops;
+
     [Range(0f,1f)]
+    public float defaultvolume;
+
+    [Range(0f, 1f)]
     public float volume;
 
     [Range(0.1f,3f)]

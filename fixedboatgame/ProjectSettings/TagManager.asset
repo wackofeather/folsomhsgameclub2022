@@ -20,9 +20,9 @@ TagManager:
   - watercollision
   - islandground
   - player
-  - 
-  - 
-  - 
+  - islandcollider
+  - post
+  - playerisland
   - 
   - 
   - 

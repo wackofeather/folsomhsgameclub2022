@@ -10,6 +10,8 @@ public class pauseMenu : MonoBehaviour
     public GameObject optionsUI;
     public Camera cameramain;
     public AudioMixer audiomixer;
+    public GameObject renderdistancer;
+    
     // Update is called once per frame
     void Update()
     {
@@ -28,7 +30,27 @@ public class pauseMenu : MonoBehaviour
               }
                 
             }
+            
         }
+    }
+    public void ProperRenderDistance(float renderdistance) // all of the drawdistance stuff is broken
+    {
+       
+        renderdistancer.GetComponent<GridGenerator>().columnLength =  Mathf.FloorToInt(renderdistance);
+        renderdistancer.GetComponent<GridGenerator>().destroy = true;
+    }
+    public void ProperSimulationDistance(float flatdistance)
+    {
+        
+       
+        renderdistancer.GetComponent<GridGenerator>().flatextend =  Mathf.FloorToInt(flatdistance);
+        renderdistancer.GetComponent<GridGenerator>().destroy = true;
+    }
+    public void ProperFillerDistance(float fillerdistance)
+    {
+     
+       renderdistancer.GetComponent<GridGenerator>().plainextend = Mathf.FloorToInt(fillerdistance);
+        renderdistancer.GetComponent<GridGenerator>().destroy = true;
     }
     public void Resume ()
     {
@@ -72,5 +94,9 @@ public class pauseMenu : MonoBehaviour
     public void FOVchange(float fov)
     {
         cameramain.fieldOfView = fov;
+    }
+    public void scrollsens(float scrollsensitivity)
+    {
+      //  Input.GetAxis("Mouse ScrollWheel").sen
     }
 }

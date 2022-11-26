@@ -183,8 +183,12 @@ Material:
     - _pan_strength: 0.5
     - _refractstrength: 0.12
     - _tile: 0
+    - _wateropacity: 1
     - _waveSpeed: 0.1
-    - _waveheight: 0
+    - _waveheight: 1.28
+    - _wavetexturesize: 2.32
+    - _wavevectorx: 0
+    - _wavevectory: 2
     m_Colors:
     - Color_31F2026D: {r: 0.018913649, g: 0.090890594, b: 0.10139817, a: 0}
     - Color_C8989E96: {r: 0, g: 0, b: 0, a: 0}

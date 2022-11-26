@@ -22,6 +22,7 @@ public class GridGenerator : MonoBehaviour
     public int plainextend;
     public int flatextend;
     public float flatwaterYoffset;
+    public bool destroy;
     // Start is called before the first frame update
     public List<GameObject> oldtiles = new List<GameObject>();
     void Start()
@@ -36,17 +37,17 @@ public class GridGenerator : MonoBehaviour
         {
             
             GameObject initialinstante = Instantiate(gridprefab, new Vector3(Player.position.x, 0, Player.position.z), Quaternion.identity);
-            Debug.Log(initialinstante.transform.position.z);
+            //Debug.Log(initialinstante.transform.position.z);
             oldtiles.Add(initialinstante);
-            for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+            for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
             {
-                GameObject gawdam = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                GameObject gawdam = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z + zSpace + (zSpace * (j % columnLength))), Quaternion.identity);
                 gawdam.transform.parent = parent.transform;
                 oldtiles.Add(gawdam);
             }
-            for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+            for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
             {
-                GameObject gawda = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                GameObject gawda = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x, 0, initialinstante.transform.position.z - zSpace - (zSpace * (j % columnLength))), Quaternion.identity);
                 gawda.transform.parent = parent.transform;
                 oldtiles.Add(gawda);
             }
@@ -55,15 +56,15 @@ public class GridGenerator : MonoBehaviour
             for (int i=0; i<Mathf.Floor(columnLength/2); i++)
             {
                 fart = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (i % columnLength)), 0, initialinstante.transform.position.z), Quaternion.identity);
-                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
                 {
-                    GameObject shsh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                    GameObject shsh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z + zSpace + (zSpace * (j % columnLength))), Quaternion.identity);
                     shsh.transform.parent = parent.transform;
                     oldtiles.Add(shsh);
                 }
-                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
                 {
-                    GameObject sh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                    GameObject sh = Instantiate(gridprefab, new Vector3(fart.transform.position.x, 0, fart.transform.position.z - zSpace - (zSpace * (j % columnLength))), Quaternion.identity);
                     sh.transform.parent = parent.transform;
                     oldtiles.Add(sh);
                 }
@@ -74,15 +75,15 @@ public class GridGenerator : MonoBehaviour
             for (int i = 0; i < Mathf.Floor(columnLength / 2); i++)
             {
                 pee = Instantiate(gridprefab, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (i % columnLength)), 0, initialinstante.transform.position.z), Quaternion.identity);
-                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
                 {
-                    GameObject huhuh = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z - zSpace - (zSpace * (j % rowLength))), Quaternion.identity);
+                    GameObject huhuh = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z - zSpace - (zSpace * (j % columnLength))), Quaternion.identity);
                     huhuh.transform.parent = parent.transform;
                     oldtiles.Add(huhuh);
                 }
-                for (int j = 0; j < Mathf.Floor(rowLength / 2); j++)
+                for (int j = 0; j < Mathf.Floor(columnLength / 2); j++)
                 {
-                    GameObject dududn = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z + zSpace + (zSpace * (j % rowLength))), Quaternion.identity);
+                    GameObject dududn = Instantiate(gridprefab, new Vector3(pee.transform.position.x, 0, pee.transform.position.z + zSpace + (zSpace * (j % columnLength))), Quaternion.identity);
                     dududn.transform.parent = parent.transform;
                     oldtiles.Add(dududn);
                 }
@@ -90,8 +91,8 @@ public class GridGenerator : MonoBehaviour
                 oldtiles.Add(pee);
             }
 
-            Debug.Log(initialinstante.transform.position);
-            Debug.Log(Player.transform.position);
+          /*  Debug.Log(initialinstante.transform.position);
+            Debug.Log(Player.transform.position);*/
            
 
             //flatwater stage
@@ -99,7 +100,7 @@ public class GridGenerator : MonoBehaviour
 
             
 
-                        for (int j = Mathf.FloorToInt(rowLength / 2); j < Mathf.FloorToInt(rowLength / 2) + flatextend; j++)
+                        for (int j = Mathf.FloorToInt(columnLength / 2); j < Mathf.FloorToInt(columnLength / 2) + flatextend; j++)
                         {
                             GameObject gawdar = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x, flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (j))), Quaternion.identity);
                             gawdar.transform.parent = parent.transform;
@@ -117,7 +118,7 @@ public class GridGenerator : MonoBehaviour
                                 oldtiles.Add(gawdazk);
                             }
                         }
-                        for (int j = Mathf.FloorToInt(rowLength / 2); j < Mathf.FloorToInt(rowLength / 2) + flatextend; j++)
+                        for (int j = Mathf.FloorToInt(columnLength / 2); j < Mathf.FloorToInt(columnLength / 2) + flatextend; j++)
                         {
                             GameObject gawdak = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x, flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (j))), Quaternion.identity);
                             gawdak.transform.parent = parent.transform;
@@ -141,31 +142,31 @@ public class GridGenerator : MonoBehaviour
                             GameObject gawdar = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z), Quaternion.identity);
                             gawdar.transform.parent = parent.transform;
                             oldtiles.Add(gawdar);
-                            for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend; i++)
+                            for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend; i++)
                             {
                                 GameObject gawdazk = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (i))), Quaternion.identity);
                                 gawdazk.transform.parent = parent.transform;
                                 oldtiles.Add(gawdazk);
                             }
-                            for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend; i++)
+                            for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend; i++)
                             {
                                 GameObject gawdazk = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (i))), Quaternion.identity);
                                 gawdazk.transform.parent = parent.transform;
                                 oldtiles.Add(gawdazk);
                             }
                         }
-                        for (int j = Mathf.FloorToInt(rowLength / 2); j < Mathf.FloorToInt(rowLength / 2) + flatextend; j++)
+                        for (int j = Mathf.FloorToInt(columnLength / 2); j < Mathf.FloorToInt(columnLength / 2) + flatextend; j++)
                         {
                             GameObject gawdak = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z), Quaternion.identity);
                             gawdak.transform.parent = parent.transform;
                             oldtiles.Add(gawdak);
-                            for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend; i++)
+                            for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend; i++)
                             {
                                 GameObject gawdazk = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (i))), Quaternion.identity);
                                 gawdazk.transform.parent = parent.transform;
                                 oldtiles.Add(gawdazk);
                             }
-                            for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend; i++)
+                            for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend; i++)
                             {
                                 GameObject gawdazk = Instantiate(flatwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (i))), Quaternion.identity);
                                 gawdazk.transform.parent = parent.transform;
@@ -177,7 +178,7 @@ public class GridGenerator : MonoBehaviour
             //plainwaterstage
 
             
-                           for (int j = Mathf.FloorToInt(rowLength / 2) + flatextend; j < Mathf.FloorToInt(rowLength / 2) + flatextend + plainextend; j++)
+                           for (int j = Mathf.FloorToInt(columnLength / 2) + flatextend; j < Mathf.FloorToInt(columnLength / 2) + flatextend + plainextend; j++)
                            {
                                GameObject gawdapo = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x, flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (j))), Quaternion.identity);
                                gawdapo.transform.parent = parent.transform;
@@ -195,7 +196,7 @@ public class GridGenerator : MonoBehaviour
                                    oldtiles.Add(gawdazka);
                                }
                            }
-                           for (int j = Mathf.FloorToInt(rowLength / 2) + flatextend; j < Mathf.FloorToInt(rowLength / 2) + flatextend + plainextend; j++)
+                           for (int j = Mathf.FloorToInt(columnLength / 2) + flatextend; j < Mathf.FloorToInt(columnLength / 2) + flatextend + plainextend; j++)
                            {
                                GameObject gawdakz = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x, flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (j))), Quaternion.identity);
                                gawdakz.transform.parent = parent.transform;
@@ -219,31 +220,31 @@ public class GridGenerator : MonoBehaviour
                                GameObject gawdaresa = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z), Quaternion.identity);
                                gawdaresa.transform.parent = parent.transform;
                                oldtiles.Add(gawdaresa);
-                               for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend + plainextend; i++)
+                               for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend + plainextend; i++)
                                {
                                    GameObject gawdazkeesa = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (i))), Quaternion.identity);
                                    gawdazkeesa.transform.parent = parent.transform;
                                    oldtiles.Add(gawdazkeesa);
                                }
-                               for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend + plainextend; i++)
+                               for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend + plainextend; i++)
                                {
                                    GameObject gawdazkase = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x + xSpace + (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (i))), Quaternion.identity);
                                    gawdazkase.transform.parent = parent.transform;
                                    oldtiles.Add(gawdazkase);
                                }
                            }
-                           for (int j = Mathf.FloorToInt(rowLength / 2) + flatextend; j < Mathf.FloorToInt(rowLength / 2) + flatextend + plainextend; j++)
+                           for (int j = Mathf.FloorToInt(columnLength / 2) + flatextend; j < Mathf.FloorToInt(columnLength / 2) + flatextend + plainextend; j++)
                            {
                                GameObject gawdakose = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z), Quaternion.identity);
                                gawdakose.transform.parent = parent.transform;
                                oldtiles.Add(gawdakose);
-                               for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend + plainextend; i++)
+                               for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend + plainextend; i++)
                                {
                                    GameObject gawdazkosep = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z + zSpace + (zSpace * (i))), Quaternion.identity);
                                    gawdazkosep.transform.parent = parent.transform;
                                    oldtiles.Add(gawdazkosep);
                                }
-                               for (int i = 0; i < Mathf.Floor(rowLength / 2) + flatextend + plainextend; i++)
+                               for (int i = 0; i < Mathf.Floor(columnLength / 2) + flatextend + plainextend; i++)
                                {
                                    GameObject gawdazkgigi = Instantiate(plainwater, new Vector3(initialinstante.transform.position.x - xSpace - (xSpace * (j)), flatwaterYoffset, initialinstante.transform.position.z - zSpace - (zSpace * (i))), Quaternion.identity);
                                    gawdazkgigi.transform.parent = parent.transform;
@@ -310,6 +311,50 @@ public class GridGenerator : MonoBehaviour
             Debug.Log("bruh");
         }*/
         
-      
+   /*   if (Input.GetKeyDown(KeyCode.G))
+        {
+            destroy = true;
+        }*/
+      if (destroy == true)
+        {
+            for (int i = 0; i < oldtiles.Count; i++)
+            {
+
+                Destroy(oldtiles[i]);
+                oldtiles.RemoveAt(i);
+
+            }
+            if (oldtiles.Count == 0)
+            {
+               
+                //isdestroyed = false;
+                gridinstantiate = true;
+                destroy = false;
+            }
+          
+        }
     }
+  /*  public void RespawnTiles() // dosentwork
+    {
+        bool isdestroyed = true;
+             for (int i = 0; i < oldtiles.Count; i++)
+             {
+                   
+                  Destroy(oldtiles[i]);
+                  oldtiles.RemoveAt(i);
+                    
+             }
+        
+     *//*   if (oldtiles.Count == 0)
+        {
+            //isdestroyed = false;
+            Debug.Log("ahahahha");
+        }
+        if (isdestroyed == false)
+        {
+            gridinstantiate = true;
+            isdestroyed = true;
+        }*//*
+        
+    }*/
 }
