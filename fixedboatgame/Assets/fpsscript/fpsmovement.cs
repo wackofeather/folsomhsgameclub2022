@@ -153,8 +153,7 @@ public class fpsmovement : MonoBehaviour
                 boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, 30 * Time.deltaTime);
                 if (boatrotater.transform.localRotation == Quaternion.identity)
                 {
-                    Quaternion test = Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 0);
-                    gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, test, 0.7f);
+                    
                     funsyss = false;
                 }
             }
@@ -564,7 +563,13 @@ public class fpsmovement : MonoBehaviour
         //Vector3 externalMovement = transform.position - _savePosition;
         if (funsyss == false)
         {
-           isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
+            if (gameObject.transform.rotation.z != 0)
+            {
+                Quaternion test = Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 0);
+                gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, test, 0.7f);
+            }
+        
+            isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
             if (isdead)
             {
                 gameover.SetActive(true);
