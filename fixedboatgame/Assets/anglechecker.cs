@@ -19,6 +19,8 @@ public class anglechecker : MonoBehaviour
     public GameObject player;
     public ParticleSystem boatmovingparticles;
     public bool nearwall;
+    public float maxlet;
+    public float minpull;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +43,11 @@ public class anglechecker : MonoBehaviour
             //rb.AddForce(Vector3.down * gravity);
             if (funsyss == true)
             {
+
                 if (bruhangle > 20 && bruhangle < 40)
                 {
+                    maxlet = 20;
+                    minpull = 13;
                     if ((sailanglefromzero < 20) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //ssss
@@ -57,6 +62,8 @@ public class anglechecker : MonoBehaviour
                 }
                 if (bruhangle > 40 && bruhangle < 70)
                 {
+                    maxlet = 35;
+                    minpull = 20;
                     if ((sailanglefromzero < 35) && (sailanglefromzero > 20) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //sss
@@ -71,6 +78,8 @@ public class anglechecker : MonoBehaviour
                 }
                 if (bruhangle > 70 && bruhangle < 100)
                 {
+                    maxlet = 45;
+                    minpull = 35;
                     if ((sailanglefromzero < 45) && (sailanglefromzero > 35) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //sss
@@ -85,6 +94,8 @@ public class anglechecker : MonoBehaviour
                 }
                 if (bruhangle > 100 && bruhangle < 120)
                 {
+                    maxlet = 60;
+                    minpull = 45;
                     if ((sailanglefromzero < 60) && (sailanglefromzero > 45) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //sss
@@ -99,6 +110,8 @@ public class anglechecker : MonoBehaviour
                 }
                 if (bruhangle > 120 && bruhangle < 150)
                 {
+                    maxlet = 75;
+                    minpull = 60;
                     if ((sailanglefromzero < 75) && (sailanglefromzero > 60) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //sss
@@ -113,6 +126,8 @@ public class anglechecker : MonoBehaviour
                 }
                 if (bruhangle > 150 && bruhangle < 170)
                 {
+                    maxlet = 91;
+                    minpull = 75;
                     if ((sailanglefromzero < 91) && (sailanglefromzero > 75) && (ghostsailfollow == true))
                     {
                         rb.AddRelativeForce(Vector3.back * force, ForceMode.VelocityChange); //sss
@@ -141,20 +156,29 @@ public class anglechecker : MonoBehaviour
             }
             if (funsyss == false)
             {
+                boatmovingparticles.enableEmission = false;
                 if (rb.velocity.magnitude > 0)
                 {
                     rb.drag = stopfriction;
                 }
 
             }
-            if (goofyahash == true)
+            if (funsyss == true)
             {
-                boatmovingparticles.enableEmission = true;
+                if (goofyahash == true)
+                {
+                    boatmovingparticles.enableEmission = true;
+                }
+                if (goofyahash == false)
+                {
+                    boatmovingparticles.enableEmission = false;
+                }
             }
-            if (goofyahash == false)
-            {
-                boatmovingparticles.enableEmission = false;
-            }
+         
+        }
+        if (nearwall == true)
+        {
+            boatmovingparticles.enableEmission = false;
         }
         /*float angle = boat.transform.rotation.eulerAngles.y;
         float exComponent = Mathf.Cos(angle) * force;

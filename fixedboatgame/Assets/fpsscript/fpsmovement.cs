@@ -514,7 +514,16 @@ public class fpsmovement : MonoBehaviour
 
                 if ((mixedboatangle < 20) | (mixedboatangle > 340))
                 {
-                  //  Debug.Log("bruhsksajakkaksls");
+                    if (whichside == false)
+                    {
+                        boattilt = Quaternion.Euler(0, 0, 5);
+                    }
+                    if (whichside == true)
+                    {
+                        boattilt = Quaternion.Euler(0, 0, -5);
+                    }
+                    boatrotater.transform.localRotation = Quaternion.RotateTowards(boatrotater.transform.localRotation, boattilt, memes * Time.deltaTime);
+                    //  Debug.Log("bruhsksajakkaksls");
                 }
 
                 if (whichside == true)
@@ -563,13 +572,16 @@ public class fpsmovement : MonoBehaviour
         //Vector3 externalMovement = transform.position - _savePosition;
         if (funsyss == false)
         {
+
+            isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
+            //Debug.Log(isdead);
             if (gameObject.transform.rotation.z != 0)
             {
                 Quaternion test = Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 0);
                 gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, test, 0.7f);
             }
         
-            isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
+          
             if (isdead)
             {
                 gameover.SetActive(true);

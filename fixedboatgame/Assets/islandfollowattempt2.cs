@@ -17,10 +17,12 @@ public class islandfollowattempt2 : MonoBehaviour
     public GameObject parent;
     public GameObject boat;
     Quaternion keyrotation;
+    float diametercutoff;
   //  public float OGartificialdistance;
     public float OGad;
     public float artificialdistance;
     public float distance;
+    public float memecutoff;
     public float cutoff;
     public float islanddiameter;
     public Rigidbody boatrigidbody;
@@ -33,12 +35,14 @@ public class islandfollowattempt2 : MonoBehaviour
     float xvelocity;
     float zvelocity;
     public GameObject islandtrackerflow;
+    bool realcheck;
     // Start is called before the first frame update
     void Start()
     {
         boatstartx = boat.transform.position.x;
         OGad = artificialdistance;
         islandinstantiate = false;
+        realcheck = true;
     }
 
     // Update is called once per frame
@@ -50,12 +54,14 @@ public class islandfollowattempt2 : MonoBehaviour
         {
 
             SpawnIsland();
+            islanddiamtercheck = sheeshjk.transform.Find("usethis");
+           
             keepscaling = true;
         }
         if (islandinstantiate == true)
         {
             parent.transform.position = new Vector3(boatstartx, 0, boat.transform.position.z);
-            islanddiamtercheck = sheeshjk.transform.Find("usethis");
+           
             Vector3 bruh = new Vector3(islanddiamtercheck.position.x, islanddiamtercheck.position.y, islanddiamtercheck.position.z);
             float arghdistance = Vector3.Distance(bruh, parent.transform.position);
             //Debug.Log(arghdistance);
@@ -83,7 +89,7 @@ public class islandfollowattempt2 : MonoBehaviour
                 keepscaling = false;
                 //artificialdistance = cutoff;
             }
-            Debug.Log(keepscaling);
+           // Debug.Log(keepscaling);
 
          /*  
             if ((artificialdistance > cutoff - 1) && (artificialdistance < OGad + 1))
@@ -101,10 +107,10 @@ public class islandfollowattempt2 : MonoBehaviour
 
 
 
-
-/*                                float a = Root((initialdowndistance/endingdowndistance), (OGad - cutoff));
-                                 float ypos = initialdowndistance * (Mathf.Pow(a, artificialdistance - cutoff));
-                                sheeshjk.transform.position = new Vector3(sheeshjk.transform.position.x, ypos, sheeshjk.transform.position.z);*/ //GET THIS WORKING
+                /*
+                                float a = Root((endingdowndistance-initialdowndistance+1), (1/(cutoff-OGad)));
+                                 float ypos = Mathf.Pow(a, artificialdistance-OGad) + (initialdowndistance -1);
+                                sheeshjk.transform.position = new Vector3(sheeshjk.transform.position.x, ypos, sheeshjk.transform.position.z);//GET THIS WORKING*/
                 
                                 
                              /*   float finaldistance = artificialdistance * scale * thetascale; //  * scale
@@ -115,6 +121,7 @@ public class islandfollowattempt2 : MonoBehaviour
                                 sheeshjk.transform.rotation = Quaternion.identity;
 */
                                sheeshjk.transform.parent = parent.transform;
+                               realcheck = true;
                             }
 
 
@@ -130,7 +137,27 @@ public class islandfollowattempt2 : MonoBehaviour
                                    // Debug.Log("this part works");
                                     keepscaling = true;
                                 }
-                             }
+
+            //    Debug.Log(diametercutoff);
+                if (realcheck == true)
+                {
+                    diametercutoff = Vector3.Distance(islanddiamtercheck.position, parent.transform.position);
+                    realcheck = false;
+                }
+                float memedistance = Vector3.Distance(islanddiamtercheck.transform.position, boat.transform.position);
+           //     Debug.LogError(memedistance);
+
+                float a = Root((endingdowndistance - initialdowndistance + 1), (1 / (memecutoff - diametercutoff)));
+                float ypos = Mathf.Pow(a, memedistance - diametercutoff) + (initialdowndistance - 1);
+               /* float m = (endingdowndistance-initialdowndistance) / (memecutoff - cutoff);
+                float ypos = ((m * (memedistance - cutoff)) + initialdowndistance);*/
+                float yposclamp = Mathf.Clamp(ypos, initialdowndistance, endingdowndistance);
+                sheeshjk.transform.position = new Vector3(sheeshjk.transform.position.x, yposclamp, sheeshjk.transform.position.z);
+
+                /*     float a = Root((endingdowndistance - initialdowndistance + 1), (1 / (cutoff - OGad)));
+                                     float ypos = Mathf.Pow(a, artificialdistance - OGad) + (initialdowndistance - 1);
+                                     sheeshjk.transform.position = new Vector3(sheeshjk.transform.position.x, ypos, sheeshjk.transform.position.z);//GET THIS WORKING*/
+            }
            
 
 
@@ -165,13 +192,13 @@ public class islandfollowattempt2 : MonoBehaviour
         if (what < 0.0f)
         {
 
-            return -Mathf.Pow(what, 1/power);
+            return -Mathf.Pow(what, power);
         }
 
         else
         {
 
-            return Mathf.Pow(what, 1/power);
+            return Mathf.Pow(what, power);
         }
     }
 }

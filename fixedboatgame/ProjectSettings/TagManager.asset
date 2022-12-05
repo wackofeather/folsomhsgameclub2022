@@ -23,7 +23,7 @@ TagManager:
   - islandcollider
   - post
   - playerisland
-  - 
+  - speciallight
   - 
   - 
   - 
@@ -45,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: foreground
+    uniqueID: 426714941
+    locked: 0
+  - name: background
+    uniqueID: 4108241533
     locked: 0
