@@ -43,7 +43,14 @@ public class anglechecker : MonoBehaviour
             //rb.AddForce(Vector3.down * gravity);
             if (funsyss == true)
             {
-
+                if (bruhangle < 20)
+                {
+                    goofyahash = false;
+                }
+                if (bruhangle > 170)
+                {
+                    goofyahash = false;
+                }
                 if (bruhangle > 20 && bruhangle < 40)
                 {
                     maxlet = 20;

@@ -10,6 +10,7 @@ public class fpsmovement : MonoBehaviour
     public float gravity = -9.81f;
     Vector3 velocity = Vector3.zero;
     public Transform groundcheck;
+    public Transform deathsphere;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public float switchtime;
@@ -59,18 +60,19 @@ public class fpsmovement : MonoBehaviour
     public bool initialsqueeze;
     public float initialrotation;
     public bool initialbiglean;
-    public bool isswitching;
+     bool isswitching;
     // Start is called before the first frame update
     void Start()
     {
-      
+       // isswitching = true;
         getoff = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        //Debug.Log(isswitching);
         //Debug.Log(Time.deltaTime);
         ispowered = sail.GetComponent<anglechecker>().goofyahash;
        
@@ -139,7 +141,7 @@ public class fpsmovement : MonoBehaviour
         if (funsyss == true)
         {
           
-           // Debug.Log(whichside);
+          
             float mixedboatangle = sail.GetComponent<supersailing>().mixedboatangle;
             distanceleft = Vector3.Distance(sitdownleft.transform.position, gameObject.transform.position);
             distanceright = Vector3.Distance(sitdownright.transform.position, gameObject.transform.position);
@@ -171,10 +173,11 @@ public class fpsmovement : MonoBehaviour
                 {
                     if ((boatrotater.transform.localEulerAngles.z < 5) | (boatrotater.transform.localEulerAngles.z > 180))
                     {
+                        //Debug.Log("meme");
                         isswitching = true;
                         memes = 25;
                     }
-                    if ((boatrotater.transform.localEulerAngles.z > 5) | (boatrotater.transform.localEulerAngles.z < 180))
+                    if ((boatrotater.transform.localEulerAngles.z > 5) && (boatrotater.transform.localEulerAngles.z < 180))
                     {
                         isswitching = false;
                        
@@ -240,10 +243,11 @@ public class fpsmovement : MonoBehaviour
                                     if ((initialbiglean == true) && (initialsqueeze == false))
                                     {
                                         headback = new Vector3(0, 4.04f, -1.5f);
-                                        boattilt = Quaternion.Euler(0, 0, initialrotation - 15);
+                                      
                                         if (isswitching == false)
                                         {
-                                             memes = 20;
+                                            boattilt = Quaternion.Euler(0, 0, initialrotation - 15);
+                                            memes = 20;
                                         }
                                            
                                         if ((boatrotater.transform.localEulerAngles.z < (initialrotation - 15) + 1) && (boatrotater.transform.localEulerAngles.z > (initialrotation - 15) - 0.5f))
@@ -255,9 +259,10 @@ public class fpsmovement : MonoBehaviour
                                     {
                                         counterweight = 75;
                                         headback = new Vector3(0, 4.04f, -1.25f);
-                                        boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
+                                       
                                         if (isswitching == false)
                                         {
+                                            boattilt = Quaternion.Euler(0, 0, 5 + 5.66666f * boatvelocity - counterweight);
                                             memes = 7; //3
                                         }
                                             
@@ -391,8 +396,14 @@ public class fpsmovement : MonoBehaviour
                 if ((mixedboatangle < 340) && (mixedboatangle > 180))
                 {
                     if ((boatrotater.transform.localEulerAngles.z > 355) | (boatrotater.transform.localEulerAngles.z < 90))
-                    {
+                    { //Debug.Log("meme");
+                        isswitching = true;
                         memes = 25;
+                    }
+                    if ((boatrotater.transform.localEulerAngles.z < 355) && (boatrotater.transform.localEulerAngles.z > 90))
+                    {
+                        isswitching = false;
+                        
                     }
                     if (whichside == false)
                     {
@@ -420,6 +431,7 @@ public class fpsmovement : MonoBehaviour
                                 initialsqueeze = true;
                                 if (Input.GetKey(KeyCode.R))
                                 {
+
                                     headback = new Vector3(0, 4.04f, -1.25f);
                                     memes = 5;
                                     boattilt = Quaternion.Euler(0, 0, 346);
@@ -448,8 +460,11 @@ public class fpsmovement : MonoBehaviour
                                    if ((initialbiglean == true) && (initialsqueeze == false))
                                     {
                                         headback = new Vector3(0, 4.04f, -1.5f);
-                                        boattilt = Quaternion.Euler(0, 0, initialrotation + 15);
-                                        memes = 20;
+                                        if (isswitching == false)
+                                        {
+                                            boattilt = Quaternion.Euler(0, 0, initialrotation + 15);
+                                            memes = 20;
+                                        }
                                         if ((boatrotater.transform.localEulerAngles.z > (initialrotation + 15)-1) && (boatrotater.transform.localEulerAngles.z < (initialrotation + 15) + 0.5f))
                                         {
                                             initialbiglean = false;
@@ -459,8 +474,11 @@ public class fpsmovement : MonoBehaviour
                                     {
                                         counterweight = 75;
                                         headback = new Vector3(0, 4.04f, -1.25f);
-                                        boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
-                                        memes = 7;
+                                        if (isswitching == false)
+                                        {
+                                            boattilt = Quaternion.Euler(0, 0, -5 + -1 * 5.66666f * boatvelocity + counterweight);
+                                            memes = 7;
+                                        }
                                     }
                                         //Debug.Log(boatrotater.transform.localEulerAngles.z);
                                       
@@ -573,7 +591,8 @@ public class fpsmovement : MonoBehaviour
         if (funsyss == false)
         {
 
-            isdead = Physics.CheckSphere(groundcheck.position, deathspheresize, deathground);
+            isdead = Physics.CheckSphere(deathsphere.position, deathspheresize, deathground);
+           // Debug.Log(isdead);
             //Debug.Log(isdead);
             if (gameObject.transform.rotation.z != 0)
             {

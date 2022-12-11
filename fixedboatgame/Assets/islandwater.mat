@@ -183,9 +183,11 @@ Material:
     - _pan_strength: 0.5
     - _refractstrength: 0.12
     - _tile: 0
+    - _wateropacity: 1
     - _waveSpeed: 0.1
-    - _waveheight: 1.28
-    - _wavetexturesize: 2.32
+    - _waveheight: 0
+    - _wavetexturesize: 13.59
+    - _wavetiling: 1
     - _wavevectorx: 0
     - _wavevectory: 2
     m_Colors:

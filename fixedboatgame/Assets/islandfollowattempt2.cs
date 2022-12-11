@@ -28,7 +28,7 @@ public class islandfollowattempt2 : MonoBehaviour
     public Rigidbody boatrigidbody;
     public float endscale;
     public float initialscale;
-    bool islandinstantiate;
+    public bool islandinstantiate;
     bool keepscaling;
     public float donottypevaluesdownhere;
     float scale;

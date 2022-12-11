@@ -34,7 +34,7 @@ public class idealslice : MonoBehaviour
             float fillamount = (maxlet-minpull) / 360;
             circle.fillAmount = fillamount;
         }
-        Debug.Log(bruhangle);
+        //Debug.Log(bruhangle);
         if ((bruhangle > 170) | (bruhangle < 20))
         {
             float tempalpha = 0;

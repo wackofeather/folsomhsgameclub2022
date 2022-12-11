@@ -16,7 +16,7 @@ public class boatuifollow : MonoBehaviour
     {
         
         Quaternion boatrotation = Quaternion.Euler(0, 0, boat.transform.localEulerAngles.y);
-        Debug.Log(boat.transform.localEulerAngles.y);
+        //Debug.Log(boat.transform.localEulerAngles.y);
         gameObject.transform.localRotation = boatrotation;
     }
 }
