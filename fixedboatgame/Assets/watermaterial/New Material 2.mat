@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
-  m_Shader: {fileID: -6465566751694194690, guid: 27d9ec73cb8e04f4c98c017993c60670, type: 3}
+  m_Name: New Material 2
+  m_Shader: {fileID: -6465566751694194690, guid: 50edbe43cc2febd44a01ae3687b28287, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -185,10 +185,8 @@ Material:
     - _tile: 0
     - _wateropacity: 1
     - _waveSpeed: 0.1
-    - _waveheight: 1.28
-    - _wavetexturesize: 2.32
-    - _wavevectorx: 0
-    - _wavevectory: 2
+    - _waveheight: 0
+    - _wavetexturesize: 2.34
     m_Colors:
     - Color_31F2026D: {r: 0.018913649, g: 0.090890594, b: 0.10139817, a: 0}
     - Color_C8989E96: {r: 0, g: 0, b: 0, a: 0}
@@ -198,4 +196,6 @@ Material:
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _Vector3: {r: 0, g: 0, b: 0, a: 0}
+    - _flatbasecolor: {r: 0.14901961, g: 0.39607844, b: 0.6039216, a: 1}
+    - _flatcapcolor: {r: 0.31833917, g: 1.0667155, b: 1.0443759, a: 1}
   m_BuildTextureStacks: []

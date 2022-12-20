@@ -599,6 +599,10 @@ public class fpsmovement : MonoBehaviour
                 Quaternion test = Quaternion.Euler(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 0);
                 gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, test, 0.7f);
             }
+            if (cameramain.transform.localPosition != new Vector3(0, 4.04f, 0))
+            {
+                cameramain.transform.localPosition = new Vector3(0, 4.04f, Mathf.SmoothDamp(cameramain.transform.localPosition.z, 0, ref dampvelocity, 20 * Time.deltaTime));
+            }
         
           
             if (isdead)

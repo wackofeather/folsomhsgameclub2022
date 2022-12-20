@@ -477,8 +477,9 @@ public class supersailing : MonoBehaviour
                 whytho = true;
                 if (scrollDir > 0)
                 {
-                    transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime);
+                    transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime); //s
                     //out
+                    
 
                 }
                 if (Input.GetAxis("Mouse ScrollWheel") < 0)

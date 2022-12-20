@@ -52,6 +52,10 @@ public class boatrotation : MonoBehaviour
             // rb.MoveRotation(Quaternion.Euler(0f, boatangle, 0f));
             rb.AddTorque(Vector3.up * isrotating * rotationspeed, ForceMode.VelocityChange);
         }
+        if (funsyss == false)
+        {
+            rb.angularVelocity *= 0.9f;
+        }
           
         /*}*/
         

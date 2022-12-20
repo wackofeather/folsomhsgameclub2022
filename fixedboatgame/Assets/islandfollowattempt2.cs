@@ -36,10 +36,14 @@ public class islandfollowattempt2 : MonoBehaviour
     float zvelocity;
     public GameObject islandtrackerflow;
     bool realcheck;
+    public GameObject target;
+    public bool inboss;
+    public float bossfightinitialdistance;
+    public float bossfightenddistance;
     // Start is called before the first frame update
     void Start()
     {
-        boatstartx = boat.transform.position.x;
+       
         OGad = artificialdistance;
         islandinstantiate = false;
         realcheck = true;
@@ -55,11 +59,26 @@ public class islandfollowattempt2 : MonoBehaviour
 
             SpawnIsland();
             islanddiamtercheck = sheeshjk.transform.Find("usethis");
-           
+            boatstartx = boat.transform.position.x;
             keepscaling = true;
         }
         if (islandinstantiate == true)
         {
+            //Debug.Log(artificialdistance);
+            if ((artificialdistance > bossfightenddistance) && (artificialdistance < bossfightinitialdistance))
+            {
+                target.GetComponent<watercolorshifter>().shift = true;
+                target.GetComponent<watercolorshifter>().shiftswitch = true;
+                inboss = true;
+                
+            }
+            if ((artificialdistance < bossfightenddistance) | (artificialdistance > bossfightinitialdistance))
+            {
+                target.GetComponent<watercolorshifter>().shift = false;
+                target.GetComponent<watercolorshifter>().shiftswitch = true;
+                inboss = false;
+
+            }
             parent.transform.position = new Vector3(boatstartx, 0, boat.transform.position.z);
            
             Vector3 bruh = new Vector3(islanddiamtercheck.position.x, islanddiamtercheck.position.y, islanddiamtercheck.position.z);
@@ -178,10 +197,10 @@ public class islandfollowattempt2 : MonoBehaviour
         sheeshjk.transform.localScale = Vector3.one * initialscale;
         /*  water = Instantiate(surroundingwaterprefab);
           water.transform.position = new Vector3(0, 1000, - initialdistance);*/
-        parent.transform.rotation = keyrotation;
+        parent.transform.position = boat.transform.position;
         // sheeshjk.transform.parent = parent;
         sheeshjk.transform.position = new Vector3(parent.transform.position.x, -10.760000228881836f, parent.transform.position.z-distance);
-        
+        parent.transform.rotation = keyrotation;
         // sheeshjk.transform.localScale = Vector3.one * initialscale;
         keepscaling = true;
         islandinstantiate = true;

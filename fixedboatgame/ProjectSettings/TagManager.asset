@@ -10,6 +10,7 @@ TagManager:
   - Grid
   - gridparent
   - watersim
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -26,9 +27,9 @@ TagManager:
   - playerisland
   - speciallight
   - death
-  - 
-  - 
-  - 
+  - projections
+  - postprocess
+  - projectiledeath
   - 
   - 
   - 
