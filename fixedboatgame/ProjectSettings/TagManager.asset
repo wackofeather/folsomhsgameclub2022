@@ -30,10 +30,10 @@ TagManager:
   - projections
   - postprocess
   - projectiledeath
-  - 
-  - 
-  - 
-  - 
+  - wind
+  - endDetector
+  - speciallight
+  - skeleton
   - 
   - 
   - 

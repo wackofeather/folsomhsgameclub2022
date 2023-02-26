@@ -33,8 +33,10 @@ public class spawnprojectors : MonoBehaviour
     public float timebetweenasteroids;
     public GameObject boat;
     public float boatdeathradius;
-    public LayerMask deathlayermask;
+    public LayerMask boatlayermask;
     public GameObject gameoverscreen;
+    public camerashake shakescript;
+    public GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,14 @@ public class spawnprojectors : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            FindObjectOfType<AudioManager>().Play("asteroid");
+        }
+        if (parent == null)
+        {
+            parent = GameObject.Find("islandParent");
+        }
         bool bossfight = bossfightchecker.GetComponent<watercolorshifter>().bossfight;
         if ((bossfight) && (invokeinitialize))
         {
@@ -79,7 +89,7 @@ public class spawnprojectors : MonoBehaviour
       
             GameObject newHazard = Instantiate(projecotrprefab);
         Transform target = newHazard.transform.GetChild(0);
-        Debug.Log(target.name);
+       // Debug.Log(target.name);
       //  meteorstart.transform.position = new Vector3(meteorstart.transform.position.x,newHazard.transform.position.y, meteorstart.transform.position.z);
             newHazard.transform.position = bounds.center + new Vector3(offsetX, offsetY, offsetZ);
         StartCoroutine(throwmeteor(target, newHazard, projectiletime));
@@ -182,11 +192,13 @@ public class spawnprojectors : MonoBehaviour
 
                 yield return null;
         }
-        Debug.Log("going down");
-        if (Physics.CheckSphere(boat.transform.position, boatdeathradius, deathlayermask))
+        //Debug.Log("going down");
+        FindObjectOfType<AudioManager>().InstancePlay("asteroid");
+        shakescript.StartShake();
+
+        if (Physics.CheckSphere(decal.transform.position, boatdeathradius, boatlayermask))
         {
-            gameoverscreen.SetActive(true);
-            SceneManager.LoadScene("shehs 2");
+          parent.GetComponent<islandfollowattempt2>().Die(30f);
         }
         asteroid.transform.DOMoveY(target.transform.position.y - 30, downtime);
         Material material = decal.GetComponent<DecalProjector>().material;
@@ -201,7 +213,7 @@ public class spawnprojectors : MonoBehaviour
         splash.Play();
         float velocity = 0;
         DecalProjector trys = projector.GetComponent<DecalProjector>();
-        Debug.Log("teheheheheheheh");
+      //  Debug.Log("teheheheheheheh");
         while (trys.fadeFactor > 0.01f)
         {
             trys.fadeFactor *= fadeoutshiftspeed;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class isonisland : MonoBehaviour
 {
     public Transform groundcheck;
@@ -27,8 +28,11 @@ public class isonisland : MonoBehaviour
     public float startingalpha;
     public float endingalpha;
     float m;
+    public LayerMask shadowlayermask;
     //public GameObject player;
     // Start is called before the first frame update
+    public float endradius;
+    public bool fadeout;
     void Start()
     {
          up = upobject.transform.position;
@@ -48,7 +52,7 @@ public class isonisland : MonoBehaviour
         if ((islandinstantiated) && (switches == false))
         {
             
-            Debug.Log("beepboop");
+            //Debug.Log("beepboop");
             watersimparent = GameObject.Find("watersimparent");
             wind1 = GameObject.Find("wind1").GetComponent<ParticleSystem>();
             watersimparent.SetActive(false);
@@ -85,14 +89,27 @@ public class isonisland : MonoBehaviour
         }
         if (onisland)
         {
-            float distance = Vector3.Distance(shadowgod.transform.position, gameObject.transform.position);//Mathf.Abs(shadowgod.transform.position.x - gameObject.transform.position.x);
-           // Debug.Log(distance);
+            // float distance = Vector3.Distance(shadowgod.transform.position, gameObject.transform.position);//Mathf.Abs(shadowgod.transform.position.x - gameObject.transform.position.x);
+            Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, endradius, shadowlayermask);
+            Vector3 closest = hitColliders[0].ClosestPointOnBounds(gameObject.transform.position);
+            float distance = Vector3.Distance(closest, gameObject.transform.position);
+
+            Debug.Log(distance);
             if (distance <= starttransitiondistance)
             {
+                fadeout = true;
                 float alpha = m * (distance-endtransitiondistance) + endingalpha;
                 float alphaplugin = Mathf.Clamp(alpha, 0, 1);
                 Debug.Log(alpha);
                 transitioner.color = new Color(transitioner.color.r, transitioner.color.g, transitioner.color.b, alphaplugin);
+                if (alpha > 0.95f)
+                {
+                    SceneManager.LoadScene("ending");
+                }
+            }
+            else
+            {
+                fadeout = false;
             }
         }
     

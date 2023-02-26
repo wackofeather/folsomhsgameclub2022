@@ -27,6 +27,10 @@ public class watercolorshifter : MonoBehaviour
     Color cap;
     Color basecolor;
     public bool bossfight;
+    void Awake()
+    {
+       // DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,35 +45,47 @@ public class watercolorshifter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   /*     if (shift == true)
+        if (cameraskybox == null)
         {
-            cap = Color.Lerp(cap, othercap, shiftspeed * Time.deltaTime);
-            basecolor = Color.Lerp(basecolor, otherbase, shiftspeed * Time.deltaTime);
-            wavywater.SetColor("_capcolor", cap);
-            wavywater.SetColor("_basecolor", basecolor);
-            flatwater.SetColor("_flatcapcolor", cap);
-            flatwater.SetColor("_flatbasecolor", basecolor);
-            plainwater.color = basecolor;
-            shiftswitch = true;
+            cameraskybox = GameObject.Find("Main Camera").GetComponent<Skybox>();
         }
-        if (!shift)
+        if (omnilight == null)
         {
-            cap = Color.Lerp(cap, regularcap, shiftspeed * Time.deltaTime);
-            basecolor = Color.Lerp(basecolor, regularbase, shiftspeed * Time.deltaTime);
-            wavywater.SetColor("_capcolor", cap);
-            wavywater.SetColor("_basecolor", basecolor);
-            flatwater.SetColor("_flatcapcolor", cap);
-            flatwater.SetColor("_flatbasecolor", basecolor);
-            plainwater.color = basecolor;
-            shiftswitch = true;
-        }*/
-     /*   if (Input.GetKeyDown(KeyCode.B))
+            omnilight = GameObject.Find("omnilight").GetComponent<Light>();
+        }
+        if (evilislandlight == null)
         {
-            
-            shift = !shift;
-            //
-            shiftswitch = true;
-        }*/
+            evilislandlight = GameObject.Find("redlight").GetComponent<Light>();
+        }
+        /*     if (shift == true)
+             {
+                 cap = Color.Lerp(cap, othercap, shiftspeed * Time.deltaTime);
+                 basecolor = Color.Lerp(basecolor, otherbase, shiftspeed * Time.deltaTime);
+                 wavywater.SetColor("_capcolor", cap);
+                 wavywater.SetColor("_basecolor", basecolor);
+                 flatwater.SetColor("_flatcapcolor", cap);
+                 flatwater.SetColor("_flatbasecolor", basecolor);
+                 plainwater.color = basecolor;
+                 shiftswitch = true;
+             }
+             if (!shift)
+             {
+                 cap = Color.Lerp(cap, regularcap, shiftspeed * Time.deltaTime);
+                 basecolor = Color.Lerp(basecolor, regularbase, shiftspeed * Time.deltaTime);
+                 wavywater.SetColor("_capcolor", cap);
+                 wavywater.SetColor("_basecolor", basecolor);
+                 flatwater.SetColor("_flatcapcolor", cap);
+                 flatwater.SetColor("_flatbasecolor", basecolor);
+                 plainwater.color = basecolor;
+                 shiftswitch = true;
+             }*/
+        /*   if (Input.GetKeyDown(KeyCode.B))
+           {
+
+               shift = !shift;
+               //
+               shiftswitch = true;
+           }*/
         //
         if (shiftswitch == true)
         {

@@ -45,7 +45,7 @@ public class fpsmovement : MonoBehaviour
     Quaternion boattilt;
     Vector3 headback;
     float boatrotatez;
-    bool getoff;
+    public bool getoff;
     Quaternion charrotation;
     Quaternion charrotationinverse;
     public float bugup;
@@ -61,6 +61,9 @@ public class fpsmovement : MonoBehaviour
     public float initialrotation;
     public bool initialbiglean;
      bool isswitching;
+    public GameObject parent;
+    public bool iswalking;
+    public bool iscreaking;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +74,10 @@ public class fpsmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (parent == null)
+        {
+            parent = GameObject.Find("islandParent");
+        }
         //Debug.Log(isswitching);
         //Debug.Log(Time.deltaTime);
         ispowered = sail.GetComponent<anglechecker>().goofyahash;
@@ -90,9 +96,7 @@ public class fpsmovement : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.F)) && (funsyss == false))
         {
-            funsyss = true;
-            initialsit = true;
-            getoff = false;
+            sitdown();
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -163,16 +167,18 @@ public class fpsmovement : MonoBehaviour
             {
 
 
-                if (Input.GetKeyDown(KeyCode.F))
+              /*  if (Input.GetKeyDown(KeyCode.F))
                 {
                     whichside = !whichside;
-                }
+                }*/
 
                 //bool sailside;
                 if ((mixedboatangle > 20) && (mixedboatangle < 180))
                 {
+                    whichside = true;
                     if ((boatrotater.transform.localEulerAngles.z < 5) | (boatrotater.transform.localEulerAngles.z > 180))
                     {
+                        iscreaking = false;
                         //Debug.Log("meme");
                         isswitching = true;
                         memes = 25;
@@ -186,11 +192,11 @@ public class fpsmovement : MonoBehaviour
                     {
                         if ((Physics.CheckSphere(deathcheck3.transform.position, sidedeathchecksize, deathground)))
                         {
-                            gameover.SetActive(true);
-                            SceneManager.LoadScene("shehs 2");
+                            parent.GetComponent<islandfollowattempt2>().Die(5f);
                         }
                         if (ispowered == false)
                         {
+                            iscreaking = false;
                             if (isswitching == false)
                             {
                                 memes = 10f;
@@ -206,6 +212,7 @@ public class fpsmovement : MonoBehaviour
 
                             if (boatrotater.transform.localEulerAngles.z < 15)
                             {
+                                iscreaking = false;
                                 initialbiglean = true;
                                 initialsqueeze = true;
                                 if (Input.GetKey(KeyCode.R))
@@ -220,12 +227,13 @@ public class fpsmovement : MonoBehaviour
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
+
                                     headback = new Vector3(0, 4.04f, 0);
                                     if (isswitching == false)
                                     {
                                         memes = 3;
                                     }
-                                        
+                                    
                                     boattilt = Quaternion.Euler(0, 0, 90);
                                 }
                                
@@ -235,6 +243,7 @@ public class fpsmovement : MonoBehaviour
 
                                 if (Input.GetKey(KeyCode.R))
                                 {
+                                    iscreaking = false;
                                     if (initialsqueeze == true)
                                     {
                                         initialrotation = boatrotater.transform.localEulerAngles.z;
@@ -275,6 +284,7 @@ public class fpsmovement : MonoBehaviour
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
+                                    iscreaking = true;
                                     initialbiglean = true;
                                     initialsqueeze = true;
                                     if (isswitching == false)
@@ -307,14 +317,13 @@ public class fpsmovement : MonoBehaviour
                         initialsqueeze = true;
                         if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
                         {
-                            gameover.SetActive(true);
-                            SceneManager.LoadScene("shehs 2");
+                            parent.GetComponent<islandfollowattempt2>().Die(5f);
                         }
                         if (isswitching == false)
                         {
                             memes = 15;
                         }
-                            
+                        iscreaking = true;
                         //this is the key fotr switch side bug HEREHEKJEHE
                         headback = new Vector3(0, 4.04f, 0);
                         //cameramain.transform.localPosition = headback;
@@ -395,8 +404,11 @@ public class fpsmovement : MonoBehaviour
 
                 if ((mixedboatangle < 340) && (mixedboatangle > 180))
                 {
+                    whichside = false;
                     if ((boatrotater.transform.localEulerAngles.z > 355) | (boatrotater.transform.localEulerAngles.z < 90))
-                    { //Debug.Log("meme");
+                    {
+                        iscreaking = false;
+                        //Debug.Log("meme");
                         isswitching = true;
                         memes = 25;
                     }
@@ -409,13 +421,12 @@ public class fpsmovement : MonoBehaviour
                     {
                         if ((Physics.CheckSphere(deathcheck2.transform.position, sidedeathchecksize, deathground)))
                         {
-                           // Debug.Log("ahhhhhhh");
-                            gameover.SetActive(true);
-                            SceneManager.LoadScene("shehs 2");
+                            // Debug.Log("ahhhhhhh");
+                            parent.GetComponent<islandfollowattempt2>().Die(5f);
                         }
                         if (ispowered == false)
                         {
-
+                            iscreaking = false;
                             //memes = 0.2f;
                             counterweight = 0;
                             memes = 10;
@@ -424,7 +435,7 @@ public class fpsmovement : MonoBehaviour
                         }
                         if (ispowered == true)
                         {
-
+                            iscreaking = false;
                             if (boatrotater.transform.localEulerAngles.z > 345)
                             {
                                 initialbiglean = true;
@@ -452,7 +463,8 @@ public class fpsmovement : MonoBehaviour
                                 
                                 if (Input.GetKey(KeyCode.R))
                                 {
-                                   if (initialsqueeze == true)
+                                    iscreaking = false;
+                                    if (initialsqueeze == true)
                                     {
                                         initialrotation = boatrotater.transform.localEulerAngles.z;
                                         initialsqueeze = false;
@@ -488,6 +500,7 @@ public class fpsmovement : MonoBehaviour
                                 }
                                 if (Input.GetKey(KeyCode.R) == false)
                                 {
+                                    iscreaking = true;
                                     initialbiglean = true;
                                     initialsqueeze = true;
                                     memes = 10;
@@ -511,12 +524,12 @@ public class fpsmovement : MonoBehaviour
                     }
                     if (whichside == true)
                     {
+                        iscreaking = true;
                         initialbiglean = true;
                         initialsqueeze = true;
                         if ((Physics.CheckSphere(deathcheck1.transform.position, sidedeathsize, deathground)))
                         {
-                            gameover.SetActive(true);
-                            SceneManager.LoadScene("shehs 2");
+                            parent.GetComponent<islandfollowattempt2>().Die(5f);
                         }
                         memes = 25;
                         //this is the key fotr switch side bug HEREHEKJEHE
@@ -590,7 +603,7 @@ public class fpsmovement : MonoBehaviour
         //Vector3 externalMovement = transform.position - _savePosition;
         if (funsyss == false)
         {
-
+            iscreaking = false;
             isdead = Physics.CheckSphere(deathsphere.position, deathspheresize, deathground);
            // Debug.Log(isdead);
             //Debug.Log(isdead);
@@ -607,8 +620,7 @@ public class fpsmovement : MonoBehaviour
           
             if (isdead)
             {
-                gameover.SetActive(true);
-                SceneManager.LoadScene("shehs 2");
+                parent.GetComponent<islandfollowattempt2>().Die(5f);
                 /*  charcontroller.enabled = false;
                   Debug.Log("oi");
                   //funsyss = true;
@@ -632,7 +644,14 @@ public class fpsmovement : MonoBehaviour
             }
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
-
+            if (((x != 0) | (z != 0)) && grounded)
+            {
+                iswalking = true;
+            }
+            if (((x == 0) && (z == 0)) | !grounded)
+            {
+                iswalking = false;
+            }
             Vector3 move = transform.right * x + transform.forward * z;
             charcontroller.Move((Vector3.Normalize(move) * speed * Time.deltaTime));
             velocity.y += gravity * Time.deltaTime;
@@ -642,5 +661,10 @@ public class fpsmovement : MonoBehaviour
      
 
     }
-   
+   public void sitdown()
+    {
+        funsyss = true;
+        initialsit = true;
+        getoff = false;
+    }
 }

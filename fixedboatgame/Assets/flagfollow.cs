@@ -6,6 +6,7 @@ public class flagfollow : MonoBehaviour
 {
     public GameObject followobject;
     public GameObject wind;
+    public float lerptime;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,8 @@ public class flagfollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Quaternion windangle = Quaternion.Euler(wind.transform.rotation.x, wind.transform.rotation.y, wind.transform.rotation.z);
-        gameObject.transform.rotation = windangle;
+        Quaternion windangle = Quaternion.Euler(transform.eulerAngles.x, wind.transform.eulerAngles.y, transform.eulerAngles.z);
+        gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, windangle, lerptime);
         Vector3 follow = followobject.transform.position;
         gameObject.transform.position = follow;
     }

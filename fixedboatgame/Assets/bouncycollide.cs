@@ -31,6 +31,7 @@ public class bouncycollide : MonoBehaviour
        }*/
     private void OnTriggerStay(Collider other)
     {
+     //   Debug.Log(other.gameObject);
        // Debug.Log("ahhhh");
         sail.GetComponent<anglechecker>().nearwall = true;
         

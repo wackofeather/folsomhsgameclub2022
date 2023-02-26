@@ -27,7 +27,11 @@ public class GridGenerator : MonoBehaviour
     public List<GameObject> oldtiles = new List<GameObject>();
     void Start()
     {
-        gridinstantiate = true;
+        if (oldtiles.Count == 0)
+        {
+            gridinstantiate = true;
+        }
+       
     }
 
     // Update is called once per frame

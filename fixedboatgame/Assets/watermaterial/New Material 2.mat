@@ -196,6 +196,6 @@ Material:
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _Vector3: {r: 0, g: 0, b: 0, a: 0}
-    - _flatbasecolor: {r: 0.14902134, g: 0.39607695, b: 0.603917, a: 1}
-    - _flatcapcolor: {r: 0.3183414, g: 1.066706, b: 1.0443664, a: 1}
+    - _flatbasecolor: {r: 0.14901961, g: 0.39607844, b: 0.6039216, a: 1}
+    - _flatcapcolor: {r: 0.31833917, g: 1.0667155, b: 1.0443759, a: 1}
   m_BuildTextureStacks: []

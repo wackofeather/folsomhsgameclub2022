@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class supersailing : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -40,45 +40,147 @@ public class supersailing : MonoBehaviour
     bool whytho;
     bool howtho;
     public GameObject player;
-
+    bool switchingover;
+    Quaternion switchingovercache;
+    public float switchovercaseLerpspeed;
+    public float OGsailintime;
+    public float sailintime;
+    public float OGsailouttime;
+    public float sailouttime;
+    Tween tween1;
+    Tween tween2;
+    TweenParams tParmsin;
+    TweenParams tParmsout;
+    public Ease easetypein;
+    public Ease easetypeout;
+    bool ispowered;
+    public float chunkfactor;
+    float arrowDir;
+    public float OGkeyboardfactor;
+    float keyboardfactor;
     // Start is called before the first frame update
     void Start()
     {
         bruh = true;
         shee = true;
         ghostinstantiate = true;
+        switchingover = true;
+        tParmsin = new TweenParams().SetEase(easetypein);
+        tParmsout = new TweenParams().SetEase(easetypeout);
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        
         bool funsyss = player.GetComponent<fpsmovement>().funsyss;
         //Rigidbody rb = boat.GetComponent<Rigidbody>();
 
         //Debug.Log(mixedboatangle);
        // Debug.Log(mixedboatangle);
         sailanglefromzero = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
-        mixedboatangle = boat.transform.localEulerAngles.y-windvector.transform.localEulerAngles.y;
+       
+        if ((boat.transform.localEulerAngles.y - windvector.transform.localEulerAngles.y) < 0)
+        {
+            mixedboatangle = 360 + (boat.transform.localEulerAngles.y - windvector.transform.localEulerAngles.y);
+        }
+        if ((boat.transform.localEulerAngles.y - windvector.transform.localEulerAngles.y) >= 0)
+        {
+            mixedboatangle = boat.transform.localEulerAngles.y - windvector.transform.localEulerAngles.y;
+        }
+        // Debug.Log(mixedboatangle);
         //float amogustest = Mathf.Abs(Mathf.DeltaAngle(gameObject.transform.localEulerAngles.y, 0));
         //Debug.Log(ghostsailfollow);
+        //Debug.Log(mixedboatangle);
         if ((mixedboatangle > 20) && (mixedboatangle < 170))
         {
 
-            sailletted = Quaternion.Euler(0f, 270f, 0f);
+            sailletted = Quaternion.Euler(0f, 271f, 0f);
 
             sailpulled = Quaternion.Euler(0f, 345f, 0f);
+            if ((Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation) > 21) && (Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation) < 169))
+            {
+                if ((gameObject.transform.localEulerAngles.y < 269) | (gameObject.transform.localEulerAngles.y > 345))
+                {
+                    if (switchingover == true)
+                    {
+                        switchingovercache = gameObject.transform.localRotation;
+                        switchingover = false;
+                    }
+
+                if (switchingover == false)
+                {
+                    //Debug.Log("swicthing");
+                    gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, sailletted, switchovercaseLerpspeed * Time.deltaTime);
+                    // gameObject.transform.localRotation = sailletted;
+
+                }
+            }
+              
+                if ((gameObject.transform.localEulerAngles.y > 269) && (gameObject.transform.localEulerAngles.y < 345))
+                {
+                    //Debug.Log("problem");
+                    switchingover = true;
+                }
+
+            }
+          
+          
         }
         if ((mixedboatangle < 340) && (mixedboatangle > 190))
         {
-            sailletted = Quaternion.Euler(0f, 90f, 0f);
+            sailletted = Quaternion.Euler(0f, 89f, 0f);
 
             sailpulled = Quaternion.Euler(0f, 15f, 0f);
+            if ((Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation) > 21) && (Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation) < 169))
+            { 
+                if ((gameObject.transform.localEulerAngles.y > 91) | (gameObject.transform.localEulerAngles.y < 15))
+                {
+                if (switchingover == true)
+                {
+                    switchingovercache = gameObject.transform.localRotation;
+                    switchingover = false;
+                }
+                if (switchingover == false)
+                {
+                    //Debug.Log("swicthing");
+                    gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, sailletted, switchovercaseLerpspeed * Time.deltaTime);
+                    //gameObject.transform.localRotation = sailletted;
+                }
+            }
+              
+
+                if ((gameObject.transform.localEulerAngles.y < 91) && (gameObject.transform.localEulerAngles.y > 15))
+                {
+                    //Debug.Log("problem");
+                    switchingover = true;
+                }
+
+            }
+         
         }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            arrowDir = -1;
+            keyboardfactor = OGkeyboardfactor;
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            arrowDir = 1;
+            keyboardfactor = OGkeyboardfactor;
+        }
+        if ((!Input.GetKey(KeyCode.UpArrow)) && (!Input.GetKey(KeyCode.DownArrow)))
+        {
+            arrowDir = Input.GetAxis("Mouse ScrollWheel");
+            keyboardfactor = 1;
+        }
+        float scrollDir = arrowDir;
         if (funsyss == true)
         {
             //Debug.Log(boat.transform.localEulerAngles.y);
-            float scrollDir = Input.GetAxis("Mouse ScrollWheel");
+           //Input.GetAxis("Mouse ScrollWheel");
 
             angle = boat.transform.rotation.eulerAngles.y - windvector.transform.rotation.eulerAngles.y;
             bruhangle = Quaternion.Angle(boat.transform.rotation, windvector.transform.rotation);
@@ -202,7 +304,7 @@ public class supersailing : MonoBehaviour
                             if (amogus > 55)
                             {
                                 //Debug.Log("itworks!!!!");
-                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 600f * Time.deltaTime);
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 900f * Time.deltaTime);
                             }
                             else
                             {
@@ -275,7 +377,7 @@ public class supersailing : MonoBehaviour
                             if (amogus > 55)
                             {
                                 //   Debug.Log("itworks!");
-                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 600f * Time.deltaTime);
+                                gameObject.transform.localRotation = Quaternion.RotateTowards(gameObject.transform.localRotation, sailflip, 900f * Time.deltaTime);
                             }
                             else
                             {
@@ -453,7 +555,17 @@ public class supersailing : MonoBehaviour
             }
             //Debug.Log("GF" + ghostsailfollow);
             // Debug.Log("GI" + ghostinstantiate);
-
+            ispowered = gameObject.GetComponent<anglechecker>().goofyahash;
+            if (ispowered)
+            {
+                sailintime = OGsailintime / chunkfactor;
+                sailouttime = OGsailouttime / chunkfactor;
+            }
+            if (!ispowered)
+            {
+                sailintime = OGsailintime;
+                sailouttime = OGsailouttime;
+            }
             if (ghostsail.transform.localRotation == gameObject.transform.localRotation)
             {
                 fartsysus = true;
@@ -477,15 +589,28 @@ public class supersailing : MonoBehaviour
                 whytho = true;
                 if (scrollDir > 0)
                 {
-                    transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, 2000f * Time.deltaTime); //s
+                    //Debug.Log("out");
+                    transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailletted, sailouttime * keyboardfactor * Time.deltaTime); //s
                     //out
-                    
+                    // transform.DOLocalRotateQuaternion(sailletted, sailouttime);
+                   // tween1 = transform.DOLocalRotate(sailletted.eulerAngles, sailouttime, RotateMode.Fast).SetAs(tParmsout);
 
                 }
-                if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                if (scrollDir == 0)
                 {
+                   // Debug.Log("stophere");
+                  /*  tween1.Pause();
+                    tween2.Pause();*/
+                    //DOTween.KillAll();
+                }
+                if (scrollDir < 0)
+                {
+                    //Debug.Log("in");
+                   // tween2 = transform.DOLocalRotate(sailpulled.eulerAngles, sailintime, RotateMode.Fast).SetAs(tParmsin);
+                    //Debugz
                     //in
-                    transform.localRotation = Quaternion.Slerp(transform.localRotation, sailpulled, 30f * Time.deltaTime);
+                    transform.localRotation = Quaternion.RotateTowards(transform.localRotation, sailpulled, sailintime * keyboardfactor * Time.deltaTime);
+                   // transform.DOLocalRotateQuaternion(sailpulled, sailintime);
                 }
                 ghostsail.transform.localRotation = gameObject.transform.localRotation;
             }

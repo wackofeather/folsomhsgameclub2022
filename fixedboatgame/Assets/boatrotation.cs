@@ -14,6 +14,8 @@ public class boatrotation : MonoBehaviour
     public float rotationspeed;
     public GameObject centerofmass;
     bool funsyss;
+    public bool clickinversion;
+    float turnDir;
     void Start()
     {
         rb.centerOfMass = centerofmass.transform.localPosition;
@@ -22,26 +24,59 @@ public class boatrotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+       // Debug.Log(turnDir);
         rb.maxAngularVelocity = maxrotataionspeed;
-
+        if (Input.GetMouseButton(0) | (Input.GetAxisRaw("ArrowHorz") > 0))
+        {
+            turnDir = 1;
+        }
+        if (Input.GetMouseButton(1) | (Input.GetAxisRaw("ArrowHorz") < 0))
+        {
+            turnDir = -1;
+        }
+        if ((!Input.GetMouseButton(1)) && (!Input.GetMouseButton(0)) && (Input.GetAxisRaw("ArrowHorz") == 0))
+        {
+            turnDir = 0;
+        }
         /*if (issailing == true)
         {*/
         if (funsyss == true)
         {
            // gameObject.transform.rotation = Quaternion.Euler(0f, boatangle, 0f);
             isrotating = 0;
-            if (Input.GetMouseButton(0))
+            if (clickinversion)
             {
-               // rb.AddTorque(transform.up * rotationspeed * 1);
-               // boatangle += 40f *Time.deltaTime;
-                isrotating = 1;
+                if (turnDir == 1)
+                {
+                    // rb.AddTorque(transform.up * rotationspeed * 1);
+                    // boatangle += 40f *Time.deltaTime;
+
+                    isrotating = 1;
+                }
+                if (turnDir == -1)
+                {
+
+                    //boatangle -= 40f * Time.deltaTime;
+                    isrotating = -1;
+                }
             }
-            if (Input.GetMouseButton(1))
+            if (!clickinversion)
             {
-                
-                //boatangle -= 40f * Time.deltaTime;
-                isrotating = -1;
+                if (turnDir == 1)
+                {
+                    // rb.AddTorque(transform.up * rotationspeed * 1);
+                    // boatangle += 40f *Time.deltaTime;
+
+                    isrotating = -1;
+                }
+                if (turnDir == -1)
+                {
+
+                    //boatangle -= 40f * Time.deltaTime;
+                    isrotating = 1;
+                }
             }
+            
             if (isrotating == 0)
             {
                 rb.angularVelocity *= 0.6f;

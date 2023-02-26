@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/shehs 2.unity
+    path: Assets/scenes 1/shehs 2.unity
     guid: 4cc437fb7280c0947812c18183ceef85
+  - enabled: 1
+    path: Assets/Scenes/shehs 2.1.unity
+    guid: f7b18c2962e62e5428e7b1fd00c75a41
+  - enabled: 1
+    path: Assets/Scenes/shehs 2.2.unity
+    guid: 875a754d13658ac468207fbfd5caf449
+  - enabled: 1
+    path: Assets/endingstuff/ending.unity
+    guid: 9842f319980b221439e3e4fed03753d6
+  - enabled: 1
+    path: Assets/endingstuff/credits.unity
+    guid: 1872e84a351efb34eb794fee32ffe943
   m_configObjects: {}
